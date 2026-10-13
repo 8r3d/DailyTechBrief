@@ -1,0 +1,122 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.150
+This is the Daily Tech Brief for Thursday, 8 October.
+
+00:00:03.850 --> 00:00:09.200
+A ComfyUI update has broken GGUF and INT8 workflows, with a fix now available.
+
+00:00:09.900 --> 00:00:15.925
+AssetFurnace offers a new open-source pipeline to generate rigged, animated characters from images.
+
+00:00:16.625 --> 00:00:22.425
+Lightricks has released LTX-2.5, a single-file model for image-to-video and audio generation.
+
+00:00:23.125 --> 00:00:26.750
+Later, a closer look at the ComfyUI update and AssetFurnace.
+
+00:00:27.450 --> 00:00:33.800
+Users on Reddit report that a recent ComfyUI update has caused crashes in MiniMax and LTX workloads.
+
+00:00:34.500 --> 00:00:39.700
+The issue involves an input_act shape mismatch that affects every GGUF-quantized workflow.
+
+00:00:40.400 --> 00:00:45.825
+A community fix is now available, and users are advised to retest their setups after applying it.
+
+00:00:46.525 --> 00:00:50.750
+AssetFurnace has been released as an open-source image-to-3D pipeline.
+
+00:00:51.450 --> 00:00:57.925
+According to its GitHub page, the tool generates textured, rigged, and animated game characters rather than just meshes.
+
+00:00:58.625 --> 00:01:06.375
+It runs locally on Apple Silicon or NVIDIA hardware, positioning it as a generative alternative to non-generative reconstruction methods.
+
+00:01:07.075 --> 00:01:11.725
+TRELLIS.2 is now working reliably on graphics cards with 10 GB of VRAM.
+
+00:01:12.425 --> 00:01:19.400
+A command-line interface and specific settings allow generative images to become real DCC assets on consumer hardware.
+
+00:01:20.100 --> 00:01:26.650
+Lightricks has shipped LTX-2.5, a single-file model for image-to-video, text-to-video, and audio generation.
+
+00:01:27.350 --> 00:01:32.825
+The model has reached 6845 downloads on Hugging Face, making it the biggest drop of the day.
+
+00:01:33.525 --> 00:01:39.925
+It supports audio-to-video and video-to-audio tasks, putting it in direct competition with other recent video models.
+
+00:01:40.625 --> 00:01:45.550
+llama.cpp has added support for GPU-caching of Mixture-of-Experts experts.
+
+00:01:46.250 --> 00:01:55.475
+According to users on Reddit, this prevents experts from being streamed from host memory on every token, improving performance for large open MoE models on limited VRAM.
+
+00:01:56.175 --> 00:02:01.750
+A paper posted to arXiv describes LightCrafter, a video diffusion model conditioned on PBR.
+
+00:02:02.450 --> 00:02:08.300
+The method allows for physically grounded and steerable relighting while maintaining long-form temporal consistency.
+
+00:02:09.000 --> 00:02:14.500
+Karim Yasser has released a new Unreal Engine 5 plugin that paints flow maps in real time.
+
+00:02:15.200 --> 00:02:20.300
+This tool moves flow-map painting into the live editor, offering a concrete artist-facing feature.
+
+00:02:21.000 --> 00:02:26.800
+Oscar Baechler has demonstrated UnrealizeX, a Blender add-on for non-generative reconstruction.
+
+00:02:27.500 --> 00:02:35.150
+The extension reconstructs meshes without generative AI, providing a 2D to 3D path for pipelines that cannot use AI models.
+
+00:02:35.850 --> 00:02:44.100
+In brief, a terrain generator driven by plate tectonics is the top procedural post on Reddit, deriving erosion and biomes from a tectonic base.
+
+00:02:44.800 --> 00:02:52.525
+A fully customizable Pebblecrete shader for Blender allows users to rebuild named surface finishes as reusable procedural materials.
+
+00:02:53.225 --> 00:03:00.075
+ZDTaichu 5.0-9B is a 9B multimodal model with spatial reasoning, small enough for local GPU use.
+
+00:03:00.775 --> 00:03:06.625
+Gaussian Splat Lite brings streaming splats to Three.js with WebGPU and WebGL2 backends.
+
+00:03:07.325 --> 00:03:13.850
+A new technique for world-anchored rain uses hashed drop positions to avoid particle simulation and camera drag.
+
+00:03:14.550 --> 00:03:17.000
+Now, a closer look at today's top stories.
+
+00:03:17.700 --> 00:03:37.875
+A recent update to ComfyUI has caused crashes in workflows using MiniMax, LTX, and GGUF-quantized models. According to a discussion thread on Reddit, the issue stems from a specific commit that changed how linear projections are handled. This change introduced an error where the system expects an argument called input_act, leading to shape mismatches that break standard operations.
+
+00:03:37.875 --> 00:03:49.025
+Users report that this affects not just the named models, but also custom quantized checkpoints and LoRAs, as the modification to the forward signature is aggressive enough to disrupt any non-standard linear layer.
+
+00:03:49.725 --> 00:04:10.275
+The community has identified a fix for this regression. A commenter notes that reverting the problematic commit resolves the crash immediately. Additionally, a separate commit and pull request are cited as potential solutions for the underlying API consolidation issue. For users relying on GGUF files, a specific fix for the GGUF loader is available from a community fork.
+
+00:04:10.275 --> 00:04:28.200
+While some users reported unrelated interface issues such as node resizing and randomized fields, other participants clarified that those are distinct from the backend error affecting model inference. The original poster emphasized that the models themselves are not corrupted, and the problem is strictly related to the code changes in the update.
+
+00:04:28.900 --> 00:04:51.400
+AssetFurnace is an open-source pipeline that converts text prompts or photos into rigged, animated game characters. According to its GitHub page, the tool runs locally on Apple Silicon or NVIDIA systems, eliminating the need for cloud uploads or credits. The project was formerly known as Image to 3D Lab and is described as a complete image-to-3D solution that outputs textured models with skeletons and animations.
+
+00:04:52.100 --> 00:05:13.100
+The system generates a 3D model, cleans it for games, adds a skeleton, and applies one of 21 animation presets. Users can export the result as a GLB file for engines like Godot, Unity, or Unreal. A feature called Pixel Match copies real pixels from the source image back onto the model to keep text and faces sharp, even when the model is reduced to around 5k faces.
+
+00:05:13.100 --> 00:05:19.750
+The project supports multiple backends, including Pixal3D, TRELLIS.2, and Hunyuan3D, all running locally.
+
+00:05:20.450 --> 00:05:38.950
+The tool includes a studio interface with a Steps panel that allows users to stop the process after any stage. It also offers a prop sheet feature that turns one image into nine separate game-ready props with levels of detail. The installer for Mac or Linux checks the machine and installs Python 3.11, while Windows support is currently limited.
+
+00:05:38.950 --> 00:05:51.125
+The project states that every file carries a record of its licences, and users can choose specific model weights during setup, with sizes ranging from 8.4 GB to 19.5 GB depending on the backend selected.
+
+00:05:51.825 --> 00:06:08.425
+That's the Daily Tech Brief. This bulletin is made for personal use and generated with AI from public sources: the script is written by a language model and read by a synthetic voice. It can contain mistakes, so check the links in the episode notes. If you find it useful, you're welcome to listen and subscribe.
+

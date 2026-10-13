@@ -1,0 +1,68 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.250
+This is the Daily Tech Brief for Monday, 12 October.
+
+00:00:03.950 --> 00:00:16.950
+Qwen-Image-2.1-Turbo weights have been published on Hugging Face. A GGUF quantized version is available for local use. Sonora Studio has released a local ComfyUI interface for ACE-Step 1.5 music generation.
+
+00:00:17.650 --> 00:00:24.825
+Later, a closer look at JIT-compiled view-dependent appearance for Gaussian splatting, and fire that spreads without writing to any texture.
+
+00:00:25.525 --> 00:00:44.525
+The official Qwen-Image-2.1-Turbo weights have gone public on Hugging Face. This release has triggered an immediate ecosystem response, including a GGUF quantized version and an outfit-swap LoRA. According to the subreddit r/comfyui, the release announcement is ranked number 3 for the week, while r/StableDiffusion lists it at number 11.
+
+00:00:45.225 --> 00:01:03.325
+A GGUF quantized version of Qwen-Image-2.1-Turbo is now available, tagged for stable-diffusion.cpp. This puts the model on the local, quantized serving path immediately upon its official release. According to Hugging Face Trending data, the project has received 319 likes under the text-to-image category.
+
+00:01:04.025 --> 00:01:22.225
+Sonora Studio has wrapped ACE-Step 1.5 music generation in a free local ComfyUI web UI. This integration allows music generation to occur on the same local ComfyUI canvas as image and video work. It enables an audio pass to sit within the pipeline next to asset generation, rather than in a separate application.
+
+00:01:22.925 --> 00:01:42.050
+A new paper titled Compact Neural Appearance Models for Efficient Gaussian Splatting introduces JIT-compiled view-dependent appearance. The appearance model is compiled just-in-time per view. The project ships with a WebGL viewer, pointing to running 3DGS in a browser with no native dependencies. The GitHub repository has received 37 stars.
+
+00:01:42.750 --> 00:02:01.675
+A graphics programming technique allows fire to spread without writing to any texture. The ignite function only appends a local-space position and start time event. Each fragment derives its own ignition from that list, requiring no render target, mask, or separate ember mesh. According to the subreddit r/GraphicsProgramming, this post is ranked number 4 for the week.
+
+00:02:02.375 --> 00:02:22.425
+TUNS is a free Unreal Engine plugin for sampling mesh surfaces with more control. The author developed it after finding Niagara's surface sampler and the surface equalizer lacking in both control and quality for a VFX shot. It serves as a better-controlled replacement for sampling points on mesh surfaces. On r/unrealengine, the post is ranked number 12 for the week.
+
+00:02:23.125 --> 00:02:46.400
+A new C library called bc_packed is a lossless BC1 texture compressor built for GPU decompression. It re-compresses textures that are already BC1-compressed at an average ratio of 1.47:1. The design focuses on fast GPU decompression, allowing it to sit under existing BC1 workflows without changing the texture format. According to r/GraphicsProgramming, the post is ranked number 13 for the week.
+
+00:02:47.100 --> 00:03:08.000
+A CPU raymarcher on SDFs bakes global illumination in seconds. Written in Rust with rayon, it bakes global illumination light probes in a few seconds, making the render almost instant. Commenters in the thread flag that when the camera is inside a refracting glass sphere, rays can be trapped by total internal reflection. The post is ranked number 7 for the week on r/GraphicsProgramming.
+
+00:03:08.700 --> 00:03:31.150
+In brief. The iris-3b model from speridlabs is a 3B text-to-image model with no VAE, using pixel-space flow matching. ComfyUI-MiniMaxH3-Director is still climbing, with v0.3.2 adding per-subject voice control. OuroWorld turns any 3D world into endlessly looping 3D cinemagraphs. Chapter 9 of the Unreal 5.8 materials course covers gradient-driven animation.
+
+00:03:31.150 --> 00:03:36.100
+Claude Code is being used as a PC game modder, with a fal MCP hook for asset work.
+
+00:03:36.800 --> 00:03:39.250
+Now, a closer look at today's top stories.
+
+00:03:39.950 --> 00:04:03.875
+A new open-source project offers a JIT-compiled view-dependent appearance system for Gaussian splatting, accompanied by a WebGL viewer. According to the paper posted to arXiv, the work presents a neural alternative to standard spherical harmonics, which are described as neither the best nor the most efficient model for 3DGS. The repository extends Faster-GS with a pluggable appearance system that supports spherical harmonics, spherical Voronoi, and the new compact neural model.
+
+00:04:03.875 --> 00:04:14.750
+These models are fused into a differentiable CUDA rasterizer using runtime code generation, allowing the forward and backward passes to run inside the rasterizer without separate launches.
+
+00:04:15.450 --> 00:04:36.300
+The project includes a standalone Three.js viewer that runs on phones and laptops without native dependencies, enabling users to compare the different appearance models on mobile GPUs. The source notes that the neural model uses per-primitive latent codes decoded by a tiny shared MLP. For developers, the pipeline is designed as a tested reference for moving beyond spherical harmonics.
+
+00:04:36.300 --> 00:04:49.425
+Installation requires an NVIDIA GPU, a recent CUDA SDK, and the NeRFICG framework. The authors state the goal is not to replace existing tools, but to provide a complete pipeline from optimization to a portable viewer.
+
+00:04:50.125 --> 00:05:12.900
+A new fire effect for Godot spreads without writing to any texture. According to the project's GitHub page, the system avoids using a render target, a mask, or a separate ember mesh. Instead, the function ignite() appends a local-space position and start time to a vec4 ign[8] uniform. Every shader involved then recomputes when each point catches fire based on that list. This allows the effect to attach to any mesh without requiring authored data.
+
+00:05:13.600 --> 00:05:33.400
+The calculation uses a value noise function to scale the distance, which creates a ragged fire front. Flames, smoke, and embers are rendered as quads on random surfaces. On the r/GraphicsProgramming subreddit, the post reached the top four for the week. Some users questioned whether the animation was generated by artificial intelligence rather than captured from realtime rendering.
+
+00:05:33.400 --> 00:05:48.125
+The developer responded that the posting was done by a human and the GIF is a screen capture of Godot rendering the effect in real time. Other commenters defended the creator, noting that posting multiple features from the same project is a common strategy for procedural visual effects.
+
+00:05:48.825 --> 00:06:05.425
+That's the Daily Tech Brief. This bulletin is made for personal use and generated with AI from public sources: the script is written by a language model and read by a synthetic voice. It can contain mistakes, so check the links in the episode notes. If you find it useful, you're welcome to listen and subscribe.
+

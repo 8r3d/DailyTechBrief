@@ -1,0 +1,83 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.450
+This is the Daily Tech Brief for Thursday, 29 October.
+
+00:00:04.150 --> 00:00:20.075
+A new kernel module claims to boost RTX 3090 performance by 55% while reducing energy use by 40%. A new ComfyUI node promises one-click 4K hair mattes. And Epic Games confirms Unreal Engine is now being developed with AI code tools.
+
+00:00:20.775 --> 00:00:30.025
+Later, a closer look at the ComfyUI roto node, the Unreal GI implementation without reprojection, and the Qwen3.5-4B-3D-Coder model.
+
+00:00:30.725 --> 00:00:51.000
+A free kernel module for the RTX 3090 is generating 55% faster at 40% less energy, according to measurements on ComfyUI with Z-Image Turbo. The report states that all changes are reversible with a simple power-off. A companion thread ships a readiness checker for RTX 40 series cards before users attempt the same process on a spare rig.
+
+00:00:51.700 --> 00:01:09.575
+A new open source node for ComfyUI allows users to click one person and receive a native 4K hair matte. The tool uses SAM3 and LTX-2.5 alpha generation. It targets the rotoscoping step, which is reported to consume the most manual time in a shot, reducing it to a single node in the ComfyUI graph.
+
+00:01:10.275 --> 00:01:29.500
+OpenKatana drives an open-source video editor from ComfyUI, with the user's AI agent acting as the operator. The project was entered into Comfy's open-source Higgsfield challenge. It allows users to open Studio from ComfyUI, add assets, and prompt, then paste the copied brief, including project, assets and revision, into the agent that makes the edit.
+
+00:01:30.200 --> 00:01:53.275
+Comfy-Org's open-weights MOSS-Image has climbed to 534 stars on Hugging Face. The model was first featured on 19 October and had 345 stars on 22 October. Recent discussions ask for a rank-64 bf16 edit LoRA. A character LoRA was trained on an RX 7900 XT 20GB, and a lightweight multi-pass workflow drives regional prompting and regional LoRAs off its layout bboxes.
+
+00:01:53.975 --> 00:02:12.275
+Real 3D props can now settle under physics inside Substance, according to 80 Level. This removes the need for a side-car simulation tool. Dropping actual models in, letting them stack, and baking the pile into a seamless tileable texture removes the export-and-return loop that turning real props into surface detail previously required.
+
+00:02:12.975 --> 00:02:35.025
+A new implementation of Unreal Engine global illumination uses radiance cascades with ray splitting, according to a post on r/GraphicsProgramming. The author's implementation splits rays across cascades to drop the reprojection pass entirely. This keeps accumulation fast with very little ghosting, offering a concrete alternative to screen-space reprojection GI for prototyping a runtime solution in UE.
+
+00:02:35.725 --> 00:02:55.925
+Epic Games confirms that Unreal Engine itself is now being developed with AI code tools, according to Game Developer. An Epic VP states that AI tooling has resolved decade-old non-deterministic cooking bugs. This claim is significant for users who rely on UE's cooked output, as non-deterministic cooking is the failure mode that poisons automated pipelines first.
+
+00:02:56.625 --> 00:03:15.450
+Qwen3.5-4B-3D-Coder trains a 4B model on Three.js scene code with 3D previews, according to its Hugging Face page. The fine-tune runs on the ThreeJS-3D-Scenes dataset. GGUF weights are already attached, making a 3D-aware code model a small, local, open-weights option rather than an API call.
+
+00:03:16.150 --> 00:03:35.325
+In brief. A full path tracer runs client-side in Chrome on WebGPU, executing a CAD assembly through a 210-frame film at 2560 by 1440 on a GTX 1060. Folio is a free HTML and CSS-style UI framework for Unreal Engine 5, allowing menus and HUDs to be laid out in a stylesheet vocabulary.
+
+00:03:35.325 --> 00:03:48.675
+A developer on VOLT Survivors explains how 625 drones are animated from one blendable vertex animation texture without jitter. And 80 Level provides a step-by-step guide for selling a toon look with the outline pass in Blender.
+
+00:03:49.375 --> 00:03:51.825
+Now, a closer look at today's top stories.
+
+00:03:52.525 --> 00:04:09.425
+A new open source node for ComfyUI aims to automate the rotoscoping process in visual effects. According to its GitHub page, the tool uses SAM3 to isolate a selected person from a plate. It then inpaints out other people before using LTX-2.5 alpha-gen to draw the edge of the remaining subject.
+
+00:04:09.425 --> 00:04:28.275
+The node processes 4K plates by running LTX again on native 1920x1088 tiles along the edge, ensuring hair strands are generated at full resolution rather than upscaled. The developer, a VFX compositor, notes that an overlap mode uses Depth Anything to determine which subject is in front when hair or hands cross.
+
+00:04:28.975 --> 00:04:49.750
+Users on Reddit report that the workflow is confirmed working on systems with 8gb of video memory and 32 gb of system ram. However, a comment identifies potential limitations, suggesting that fine strands crossing tile boundaries might disagree between passes. The same user warns that a matte that looks clean on one frame may boil across a 247-frame shot.
+
+00:04:49.750 --> 00:05:03.525
+They also request clarification on the 88.7% edge detail match figure, asking what reference it was measured against. Another user questions whether the inpainting feature is superior to existing tools like Corridor Key 2.0 for rotoing.
+
+00:05:04.225 --> 00:05:27.050
+A developer has shared an implementation of Radiance Cascades with ray splitting for Unreal Engine. According to the author's post on Reddit, this technique eliminates the need for a reprojection pass. By splitting rays across cascades, the system accumulates very fast and produces very little ghosting. The author links to a full article explaining how it works. The method is based on a recent paper, though the specific title is not named in the source text.
+
+00:05:27.050 --> 00:05:34.525
+This approach offers a concrete alternative to screen space reprojection for anyone prototyping a runtime solution in Unreal Engine.
+
+00:05:35.225 --> 00:05:56.175
+Users on Reddit responded to the release with interest. One commenter noted that they do not program but use 3D and enjoy seeing the technique gain traction. Another user mentioned seeing the post in the Radiance Cascades Discord and expressed eagerness to examine the implementation and read the writeup. A third user asked if the demo scene was the Intel Sponza and requested it in UE5 format.
+
+00:05:56.175 --> 00:06:07.900
+A separate comment suggested mixing Radiance Cascades with traditional ambient occlusion using a darken only filter. The post highlights the speed and visual quality of the new method without requiring reprojection.
+
+00:06:08.600 --> 00:06:28.000
+Qwen3.5-4B-3D-Coder is an independent fine-tune of the Qwen3.5-4B base model, created by CCORE. According to its project page, this is an early preview designed for general coding with a specific focus on generating interactive 3D scenes using Three.js. The model is not an official Qwen release.
+
+00:06:28.000 --> 00:06:47.050
+The project now offers full FP16 weights in Safetensors format, alongside Q4_K_M and Q8_0 GGUF versions. The release includes all four weight shards, the model configuration, tokenizer, and generation settings. The FP16 weights were verified locally for loading and text generation with Transformers 5.20.2.
+
+00:06:47.750 --> 00:07:07.025
+The training data comes from the CCORE Three.js 3D Scenes dataset, which is public under the MIT License. It contains 4,146 scene examples, split into 3,933 training and 213 validation sets. Each entry includes prompts, thinking traces, and complete HTML and JavaScript responses.
+
+00:07:07.025 --> 00:07:28.275
+An October 27 checkpoint update for the quantized versions has reportedly improved one-shot success and overall scene quality, though some scenes may still require correction. Users running the model in LM Studio must disable multi-token prediction for it to work properly. The source notes that observed bugs have generally involved duplicate variable names rather than major structural problems.
+
+00:07:28.975 --> 00:07:45.575
+That's the Daily Tech Brief. This bulletin is made for personal use and generated with AI from public sources: the script is written by a language model and read by a synthetic voice. It can contain mistakes, so check the links in the episode notes. If you find it useful, you're welcome to listen and subscribe.
+

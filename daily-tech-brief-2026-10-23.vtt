@@ -1,0 +1,77 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.500
+This is the Daily Tech Brief for Friday, 23 October.
+
+00:00:04.200 --> 00:00:07.725
+Edit LoRA support is now merged into ComfyUI Portable.
+
+00:00:08.425 --> 00:00:11.525
+Gaussian-Splat-Lite gains compile-free RAD LOD building.
+
+00:00:12.225 --> 00:00:16.300
+RLSplat gives feed-forward 3DGS a linear resource budget.
+
+00:00:17.000 --> 00:00:20.450
+Later, a closer look at Gaussian-Splat-Lite and RLSplat.
+
+00:00:21.150 --> 00:00:34.825
+Kijai's merge request for MOSS-Image Edit LoRA support has been accepted into the main branch. According to the project's GitHub page, this means the Edit variants no longer require a separate rig setup. The update ships in the latest ComfyUI Portable build.
+
+00:00:35.525 --> 00:00:59.175
+The Three.js-native 3DGS renderer Gaussian-Splat-Lite is continuing its growth on GitHub. The project has climbed to 254 stars, up from 163 on 9 October. Version 1.4.0 adds a new tool called gsl-build-lod, which converts PLY and SPZ models into streamable RAD files with LOD. This process does not require compilation and supports batch conversion, split files, and SH up to order 3.
+
+00:00:59.875 --> 00:01:17.325
+A paper posted to HF Daily Papers introduces RLSplat, a method for feed-forward 3D Gaussian Splatting. The paper says the system adds resource-linear budget control to single-pass, image-to-scene reconstruction. This allows the capture-to-splat step to fit a fixed budget rather than assuming hardware headroom.
+
+00:01:18.025 --> 00:01:35.700
+Users on Reddit have shared a torture test for the FLUX.3 Image Klein model. The test uses 15 prompts to stress-test the 5.6B model paired with Qwen3-VL-4B-Instruct. The tests cover macro detail, in-image typography, fluid physics, and 0.5x selfie scale, with each prompt's workflow attached.
+
+00:01:36.400 --> 00:01:52.350
+A new GitHub package called Idea-to-print drives prompt-to-print workflows end-to-end. According to its GitHub page, the tool takes a prompt or uploaded image through Hunyuan3D drafting, mesh checks, slicing, and a verified print handoff. The process ends with a slicer file that an agent can drive.
+
+00:01:53.050 --> 00:02:06.350
+80 Level has published a production breakdown of the environment work for The Alters: Last Variable. The article details the pipeline across Blender, ZBrush, and UE5. It focuses on moving terrain from DCC tools into an engine.
+
+00:02:07.050 --> 00:02:19.825
+A developer on Reddit has shared a custom Vulkan framework for procedural vegetation. The framework plants vegetation using billboarded non-triangle primitives, mostly cylinders. This approach keeps dense procedural forests cheap to render.
+
+00:02:20.525 --> 00:02:34.750
+A solo developer on Reddit reported that their scattered trees and rocks lined up in suspiciously tidy rows. The cause was identified as low-bit correlation in the random number generator. This is a common issue that can occur before debugging placement logic.
+
+00:02:35.450 --> 00:02:58.575
+In brief. A user on Reddit reports that swapping cables on an RTX Pro 6000 increased ComfyUI generation times from 20% to 100% or more. The producer and director of Final Fantasy Resonance have discussed their cinematic HD-2D pipeline, covering dynamic cameras, sprite adjustments, lighting, and VFX. The 2026 Blender survey is now live, allowing the foundation to map how the community uses the software.
+
+00:02:58.575 --> 00:03:05.500
+Finally, a paper on arXiv describes AgentDreamer, a system for text-controllable motion reasoning for physics simulation.
+
+00:03:06.200 --> 00:03:08.650
+Now, a closer look at today's top stories.
+
+00:03:09.350 --> 00:03:32.200
+Gaussian-Splat-Lite has added compile-free LOD building in its v1.4.0 update, a change that has helped the project climb to 254 stars on GitHub. According to its project page, the tool is a Three.js-native renderer for 3D Gaussian Splatting that supports WebGPU and WebGL2. It is described as the lightest way to render these models in a browser, covering PLY, SPZ, SOG, and streamable RAD formats.
+
+00:03:32.200 --> 00:03:50.075
+The new gsl-build-lod feature allows users to convert PLY and SPZ models into streamable RAD files with LOD without requiring compilation. This process includes batch conversion, split files, and SH up to order 3. The project requires Three.js version 0.186.0 or higher to function.
+
+00:03:50.775 --> 00:04:14.700
+The renderer supports large-scene streaming by loading detail as the camera moves, using either RadStreamScheduler for RAD scenes or SogStreamScheduler for SOG scenes. Both methods work on WebGPU and WebGL2. Users can also enable stochastic rendering for transparency, which produces visible noise that can be smoothed by an experimental neural denoiser. This denoiser supports WebGPU and WebGL2, including WebXR.
+
+00:04:14.700 --> 00:04:28.100
+The source notes that development requires Node.js 20.19 or 22.12 or higher, along with Rust and the wasm32-unknown-unknown target. Files are decoded locally, and the project is licensed under Apache 2.0.
+
+00:04:28.800 --> 00:04:52.650
+A paper posted to arXiv introduces RLSplat, a framework for feed-forward 3D Gaussian Splatting that adjusts computational costs to match a fixed resource budget. While previous methods for image-to-scene reconstruction could change the number of Gaussians, they still required high memory and latency because they generated a dense set of points before pruning them. According to the paper, RLSplat solves this by learning a policy that distributes the budget across local scene regions.
+
+00:04:52.650 --> 00:05:02.775
+This ensures that exactly the requested number of Gaussians is generated, allowing representation size, inference latency, and peak memory to decrease linearly as the budget is reduced.
+
+00:05:03.475 --> 00:05:26.575
+The system works by refining these Gaussians through a decoding process where each point only attends to nearby neighbors found via a hierarchical search. This design keeps the decoding cost low. In zero-shot evaluation, the authors state that RLSplat outperforms prior budget-controllable methods at every budget level. The paper reports that the method surpasses the strongest baseline even with 4$\times$ fewer Gaussians.
+
+00:05:26.575 --> 00:05:40.175
+Additionally, it runs up to 4.1$\times$ faster with 9.6$\times$ less peak memory at low budgets. This makes the tool suitable for applications that must operate within limited resource constraints.
+
+00:05:40.875 --> 00:05:57.475
+That's the Daily Tech Brief. This bulletin is made for personal use and generated with AI from public sources: the script is written by a language model and read by a synthetic voice. It can contain mistakes, so check the links in the episode notes. If you find it useful, you're welcome to listen and subscribe.
+

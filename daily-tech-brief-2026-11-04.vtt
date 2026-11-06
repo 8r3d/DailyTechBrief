@@ -1,0 +1,98 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.150
+This is the Daily Tech Brief for Wednesday, 4 November.
+
+00:00:03.850 --> 00:00:07.925
+ComfyUI version 0.44.0 adds a built-in MiniMax-H3 latent upscaler.
+
+00:00:08.625 --> 00:00:15.300
+Pruna releases P-H3-Image, a MiniMax-H3 derivative that is 7× smaller and 5× faster.
+
+00:00:16.000 --> 00:00:21.700
+Unreal Engine 5.9 preview is scheduled for next week, with the web target platform returning.
+
+00:00:22.400 --> 00:00:32.075
+Later, a closer look at idol, the open image-to-3D splat model, a procedural cartoon flame in Blender geometry nodes, and a pixel-art explosion in six procedural layers.
+
+00:00:32.775 --> 00:00:51.875
+ComfyUI version 0.44.0 introduces a built-in MiniMax-H3 latent upscale node. According to the release, this node, named MiniMaxH3LatentUpscaleWithModel, provides first-class support for the H3 family behind today's P-H3-Image. Users on Reddit confirm the node is present and brace for what the nearly four-year-old project breaks this time.
+
+00:00:52.575 --> 00:01:12.025
+Pruna has released P-H3-Image, a derivative of MiniMax-H3. The model is 7× smaller and 5× faster than the original, and runs in 8 steps. It ships with open weights on Hugging Face and includes native ComfyUI support, positioning it as a speed rival to the H3 latent upscaler landing in ComfyUI version 0.44.0.
+
+00:01:12.725 --> 00:01:29.325
+Unreal Engine 5.9 is set to arrive in preview next week. According to Unreal's official account on X, the preview brings improved AI workflows and rendering changes. The return of the web target platform is the headline for developers shipping browser builds, as the platform had been dropped previously.
+
+00:01:30.025 --> 00:01:45.425
+The open image-to-3D gaussian-splatting model, idol, continues to gain traction. The Apache-2.0 model has climbed from 349 stars on 2 November to 542 stars. Since its first feature, 1 quantized and 2 finetuned derivatives have appeared.
+
+00:01:45.425 --> 00:01:56.150
+A discussion on the platform asks to add an RTX 5070 community benchmark, with a 41.8 s median reported, and a post on r/StableDiffusion states that idol turbo is out.
+
+00:01:56.850 --> 00:02:14.700
+A quantized build of Qwen-Image-2.1-Turbo has been released by abenzers. The build supports GGUF, FP8, NVFP4, and MLX formats. This allows the turbo image model to run on ComfyUI-GGUF and smaller hardware, applying the same open-weights squeeze that Pruna applied to MiniMax-H3.
+
+00:02:15.400 --> 00:02:37.550
+CreatorOS Studio, an open-source local alternative to Higgsfield, now bundles LTX-2.5. The suite also includes Krea 2, FLUX.2, and Wan 2.2, along with footage restoration and in-UI character training. Users report that most tasks require 24 GB of memory, photos are fine on 12 GB with a light mode for smaller models, and video remains unrealistic on 4 GB cards.
+
+00:02:38.250 --> 00:02:50.950
+Paulette Shnier has built a flexible, animatable flame system in Blender using geometry nodes. The system starts from a simple curve and creates a reusable template for stylized fire. The solution remains fully procedural.
+
+00:02:51.650 --> 00:03:04.975
+A breakdown of a pixel-art explosion into six procedural layers has been shared. The technique uses SDFs, Worley noise, and particles, with no alpha blending. It serves as a clean reference for 2D effects that must stay resolution-independent.
+
+00:03:05.675 --> 00:03:06.875
+In brief.
+
+00:03:07.575 --> 00:03:16.650
+ND UI Builder, a free open-source tool, turns any ComfyUI workflow into a clean control panel, offering a handoff between node graphs and the rest of the team.
+
+00:03:17.350 --> 00:03:24.250
+Sparseal has shipped CozyBlanket Pro, an AI-assisted retopology app for PC that works on both Windows and macOS.
+
+00:03:24.950 --> 00:03:34.050
+A pull request to llama.cpp targets gemma4's graph with optimizations claiming massive prompt-processing gains on the E2B and E4B variants.
+
+00:03:34.750 --> 00:03:46.775
+A free Unreal Engine plugin enables ISPC SIMD vectorization on MacOS and Apple Silicon M1, M2, and M3 chips, allowing vectorized code paths to run on Mac dev machines.
+
+00:03:47.475 --> 00:03:49.925
+Now, a closer look at today's top stories.
+
+00:03:50.625 --> 00:04:14.950
+idol, an open source image to 3D model, continues to gain attention. According to its Hugging Face page, the project is licensed under Apache-2.0 and converts a single image into a 3D Gaussian splat. The tool accepts a render, generated image, or photo, removes the background, and generates up to 1,048,576 Gaussians. It writes the result as a standard 3DGS .ply file, which can be opened in any Gaussian splat viewer.
+
+00:04:15.650 --> 00:04:38.550
+The model runs on consumer GPUs, requiring 7.2 GB of VRAM and processing images in under 2 seconds on high-end hardware. It relies on two gated image encoders from Hugging Face, specifically facebook/dinov3-vith16plus-pretrain-lvd1689m and black-forest-labs/FLUX.2-dev. Users must accept the terms for these models and log in with an Hugging Face account before the first run.
+
+00:04:38.550 --> 00:04:43.850
+The system downloads its weights, which are about 3 GB, automatically into the Hugging Face cache.
+
+00:04:44.550 --> 00:05:05.150
+Recent activity includes the release of one quantized and two finetuned derivatives. A discussion thread requests a community benchmark for the RTX 5070, noting a 41.8 s median time. Additionally, a post on r/StableDiffusion reports that idol turbo is out. The original project remains active, with the repository showing continued growth since it was first featured.
+
+00:05:05.850 --> 00:05:26.625
+Paulette Shnier has developed a procedural cartoon flame system for Blender. According to the project description, the tool begins with a simple curve and utilizes geometry nodes to construct the final effect. This approach creates a flexible and animatable flame system that remains fully procedural. The result serves as a reusable template for stylized fire within the Blender environment.
+
+00:05:26.625 --> 00:05:46.700
+By relying on geometry nodes, the system allows for significant flexibility in how the flame is animated and shaped. Users can start from a basic curve input and build out the complex visual elements without leaving the procedural workflow. This method ensures that the flame remains adaptable to various scene requirements while maintaining the non-destructive nature of node-based editing.
+
+00:05:46.700 --> 00:06:08.000
+The system is designed to be a practical tool for artists who need consistent, stylized fire effects in their projects. It highlights the capability of geometry nodes to handle organic, animated shapes that would traditionally require more complex modeling or particle systems. The project emphasizes the utility of starting from simple inputs to achieve detailed, procedural outputs in a 3D production pipeline.
+
+00:06:08.700 --> 00:06:29.575
+A new open-source Python tool called spritefx generates pixel-art visual effects for games. According to its GitHub page, the project is free and licensed under the MIT license. The tool creates effects by breaking them down into six procedural layers, which are then composited together. This approach ensures the effects remain resolution-independent, a key requirement for many 2D game assets.
+
+00:06:30.275 --> 00:06:52.275
+The compositing method described in the source avoids traditional alpha blending. Instead, every layer outputs a value field that is quantized to steps of a palette ramp. The layers are combined directly in palette space, meaning every pixel is either fully on or fully off. This binary state aligns with the aesthetic of pixel art. The system also uses hysteresis on thresholds to prevent edges from crawling between frames.
+
+00:06:52.275 --> 00:06:59.750
+One specific layer, the contrast frame, uses a dark circle for one tick before the flash to make the subsequent white flash appear brighter.
+
+00:07:00.450 --> 00:07:22.925
+In the discussion thread, the developer acknowledges that the code was largely written by an AI assistant named Claude. The developer states that they are responsible for the ideas and designs, while the AI handles the coding. The developer notes that they have not yet tested the tool with other models, such as Gemini. Users in the thread also discuss the visual impact of the contrast frame, noting that it prevents the flash from looking flat against bright backgrounds.
+
+00:07:23.625 --> 00:07:40.225
+That's the Daily Tech Brief. This bulletin is made for personal use and generated with AI from public sources: the script is written by a language model and read by a synthetic voice. It can contain mistakes, so check the links in the episode notes. If you find it useful, you're welcome to listen and subscribe.
+

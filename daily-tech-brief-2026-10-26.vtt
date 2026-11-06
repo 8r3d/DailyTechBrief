@@ -1,0 +1,80 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.525
+This is the Daily Tech Brief for Monday, 26 October.
+
+00:00:04.225 --> 00:00:22.225
+NVIDIA drivers were capping performance on RTX 3000-series GPUs, a fix that nearly doubles TF32 speeds. A new ComfyUI plugin allows script-edited long video generation using MiniMax H3. And a working Unity HDRP setup now ray-traces splats and meshes together with dynamic lighting.
+
+00:00:22.925 --> 00:00:29.350
+Later, a closer look at the NVIDIA driver unlock, the World from Motion paper, and the Unity HDRP splat setup.
+
+00:00:30.050 --> 00:00:51.700
+First, the NVIDIA driver unlock. Users on Reddit report that a driver change lifts FP and BF16 limits on RTX 3000-series GPUs. According to the thread, the change nearly doubles TF32 performance. A companion thread reports that RTX 4090s were also being software-capped in the same way. For local generation workflows, this removes a significant bottleneck in the stack.
+
+00:00:52.400 --> 00:01:14.825
+Next, video generation tools for ComfyUI. FastVideo has released an 8-step, single-file build of MiniMax H3 Omni for reference-to-video. This focuses on speed for single shots. Separately, a plugin called AICG3D, which has 322 stars on GitHub, treats MiniMax H3 as a script-driven director flow. This approach targets long-form video structure, complementing the faster 8-step build.
+
+00:01:15.525 --> 00:01:33.300
+In rendering research, a paper posted to arXiv says World from Motion generates freely renderable dynamic 3D Gaussian representations from monocular video. The paper has been updated as a v2 cross-list. It is aimed at renderable 3D rather than image or video generation, making it relevant for dynamic scene work.
+
+00:01:34.000 --> 00:01:49.900
+In engine development, a working setup in Unity HDRP now ray-traces splats and meshes together. It supports dynamic lighting and shadows on both asset types. Users on Reddit note this is the step that usually keeps splat assets in stylized demos rather than interactive, lit scenes.
+
+00:01:50.600 --> 00:02:03.875
+Adobe has released Substance 3D Painter 12.2. According to CG Channel, the update centers on a brush-based workflow for fixing issues when baking texture maps. This addresses a common stall point in texture handoff pipelines.
+
+00:02:04.575 --> 00:02:25.650
+Scenario for Blender is continuing to gain ground. The extension, which is GPL-3.0 licensed and requires Blender 5.0 or later, generates AI images, video, 3D, and PBR materials directly in the viewport. It includes a local MCP server for agents. Star count has climbed from 523 to 845 since its first feature on 19 October.
+
+00:02:26.350 --> 00:02:46.575
+A new screen-space ray-marched GI technique called LSGI costs around 3.5ms at 4K on a 4070 Ti. It uses cosine-weighted hemi ray marching with infinite bounces and a custom denoiser. In the Reddit thread, the author's demand for a Discord invite instead of a GitHub repo drew pushback, and users are asking how it differs from prior SSGI approaches.
+
+00:02:47.275 --> 00:03:02.625
+Unreal Engine 5.8 adds support for Microsoft Advanced Shader Delivery. According to users on Reddit, this targets shader compilation stutter, one of UE5's biggest PC problems. If it works as advertised, it means noticeably less hitching for shipped Windows titles.
+
+00:03:03.325 --> 00:03:25.375
+In brief. A user compiled a 1,255-style prompt library for Krea 2 in a ComfyUI fork, including camera angles and lighting types. Tripo's P2.0 foundation model covers generation, rigging, and animation in one flow, potentially replacing several separate tools. Gameloft's Bluey pipeline uses SDF textures and custom shaders in Unreal to fake a hand-drawn 2D look.
+
+00:03:25.375 --> 00:03:39.225
+A 4B coding model that writes 3D scenes is circulating on r/LocalLLaMA, small enough to run on local hardware. And Meta trained small models to read raw bytes instead of tokens, a paper predicts they will end up better than token-based models.
+
+00:03:39.925 --> 00:03:42.375
+Now, a closer look at today's top stories.
+
+00:03:43.075 --> 00:04:06.175
+A recent change confirmed by @KohakuLab and ComfyUI lifts performance caps on RTX 3000-series GPUs. The update reveals that previous limits on FP and BF16 were software restrictions rather than hardware barriers. According to the news item, this adjustment nearly doubles TF32 performance for these cards. A companion thread reports that RTX 4090s were also being software-capped in the same manner.
+
+00:04:06.175 --> 00:04:11.875
+The modification moves the performance ceiling for local generation tasks on both GPU generations.
+
+00:04:12.575 --> 00:04:26.150
+Community discussion on Reddit highlights specific limitations and technical details. One user notes that while the change helps, users with 24 GB of memory cannot run all desired models on BF16, though INT8 works fine.
+
+00:04:26.150 --> 00:04:44.375
+That user also questions the logic behind the TF32 doubling if only BF16 was unlocked, citing a screenshot where FP16 shows 87 TFLOPS against a stated figure of 142 TFLOPS. They argue this reflects a confusion between vector and matrix performance metrics.
+
+00:04:44.375 --> 00:05:01.025
+Another comment points out that the Linux implementation is simpler because the operating system can auto-inject the necessary code at boot, whereas the Windows version is more complex and lacks a similar auto-inject feature. Users report varying results, with one mentioning a 4% boost in their specific test.
+
+00:05:01.725 --> 00:05:24.325
+World from Motion, a method presented in an arXiv paper, generates freely renderable dynamic 3D Gaussian representations from monocular videos. The approach conditions a video model on dense, pixel-aligned renderings that encode appearance, geometry, and 3D scene motion along both input and target camera trajectories. This process is designed to correct rendering artifacts and fill in missing regions from an initial reconstruction.
+
+00:05:24.325 --> 00:05:35.825
+To train the model, the authors construct a dataset of aligned multiview video pairs and dynamic 3DGS representations, which include simulated artifacts characteristic of monocular reconstruction.
+
+00:05:36.525 --> 00:06:00.575
+At test time, the method distills the model's generations, including newly observed regions and motions, back into a single consistent, high-quality dynamic 3DGS. According to the paper, this improves both novel-view synthesis and the underlying 3D motion. The authors state that their method sets a new state of the art in 4D reconstruction. They also note that it seamlessly generalizes to in-the-wild videos featuring large viewpoint changes and dynamic motions.
+
+00:06:01.275 --> 00:06:24.500
+A working setup for dynamic HDRP ray-tracing has emerged in the Unity graphics community. According to the top weekly post on the r/GraphicsProgramming subreddit, this configuration allows both gaussian splats and meshes to receive dynamic lights and shadows simultaneously. This capability addresses a common limitation that previously restricted splat assets to stylized demos, enabling them to function within interactive, lit scenes.
+
+00:06:24.500 --> 00:06:45.575
+The post is currently ranked number 17 for the week on that platform. However, the source material provided consists only of a moderator comment requesting that the original poster include code, math, or implementation details alongside rendered images. The comment explicitly asks the author to copy the text from the underlying post and provide any details interesting to graphics programmers.
+
+00:06:45.575 --> 00:07:07.325
+No specific technical implementation, code snippets, or mathematical formulas are present in the available text. Consequently, the bulletin cannot describe how the setup works or who specifically it is for beyond the general context of Unity HDRP development. The lack of implementation details in the provided source prevents a full technical breakdown of the ray-tracing method used for the splats and meshes.
+
+00:07:08.025 --> 00:07:24.625
+That's the Daily Tech Brief. This bulletin is made for personal use and generated with AI from public sources: the script is written by a language model and read by a synthetic voice. It can contain mistakes, so check the links in the episode notes. If you find it useful, you're welcome to listen and subscribe.
+

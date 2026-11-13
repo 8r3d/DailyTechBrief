@@ -1,0 +1,80 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:20.400
+This is the Daily Tech Brief for Monday, 2 November 2026. Epic has updated the Unreal Engine license to permit AI training. SculptForge, a free open-source sculpting tool, has launched with built-in AI generation. A new open-weights image-to-3D model is trending on Hugging Face. Later, a closer look at SculptForge, Coarse3D, and the Ichno Blender add-on.
+
+00:00:21.100 --> 00:00:41.925
+Epic Games has modified the Unreal Engine End User License Agreement. According to users on Reddit, two Section 6e General Restrictions that previously applied to all versions have been deleted. This change formally permits the use of the engine, including its source code, for AI training. The update represents a policy shift for developers feeding engine outputs into machine learning pipelines.
+
+00:00:42.625 --> 00:01:02.000
+SculptForge has been released as a free, open-source alternative to ZBrush. The tool integrates image and text-to-3D generation directly within the sculpting environment. It ships with support for Gaussian splats, OpenUSD, and a Send to Unreal feature that includes game-ready LODs. According to its GitHub page, the project has received 415 stars.
+
+00:01:02.700 --> 00:01:18.575
+A model named idol is trending on Hugging Face. It features Apache-2.0 weights and utilizes a Gaussian-splatting pipeline. This model serves as an open-weights counterpart to the AI features in SculptForge. It follows the same generation route that a recent arXiv paper aims to improve.
+
+00:01:19.275 --> 00:01:43.100
+A new workflow connects Blender previsualization with the MiniMax H3 model via ComfyUI. This approach keeps the Digital Content Creation tool inside the video pipeline rather than just feeding it. In a related thread on Reddit, users report that using ChatGPT with a Blender MCP works well enough to lower the entry barrier into Blender. Commenters note this fills a gap, as AI users tend to avoid Blender and Blender users tend to resist AI.
+
+00:01:43.800 --> 00:02:04.025
+A paper posted to arXiv introduces Coarse3D. The method focuses on controllable sparse-structure generation for image-to-3D tasks. It addresses the first stage of coarse-to-fine generation, which determines global orientation and overall geometry. The work makes this sparse-structure step controllable and faithful, offering an upgrade path for existing generative pipelines.
+
+00:02:04.725 --> 00:02:20.000
+A free Blender add-on named Ichno has been released. It produces orthographic and isometric views from a Blender scene in one click. The tool replaces the manual step of redrawing a model as dimensioned vector work. According to BlenderNation, the add-on has a score of 1.11.
+
+00:02:20.700 --> 00:02:37.100
+A paper posted to arXiv describes Dynamic Skinning. The technique extends Linear Blend Skinning with kinematics-driven secondary motions. This allows rigged characters to exhibit physical bounce and sway. The method provides a route to cartoon quality without requiring per-vertex simulation.
+
+00:02:37.800 --> 00:02:59.500
+A top weekly thread on Reddit discusses pairing the Vulkan 1.4 API with RAII wrappers. Commenters note that render passes and pNext chaining are no longer present. They state that Vulkan-Hpp RAII 1.4 with C++23 is not much harder than GLEW with C++11 was a decade ago. The discussion notes that the swapchain window still comes from GLFW.
+
+00:03:00.200 --> 00:03:23.975
+In brief. An unofficial Codex plugin brings Tripo Studio's AI pipeline into Blender, turning a Tripo account into a generate-texture-rig-animate workflow. A UE5 damage system called Crushform covers dents, scraped paint, tearing doors, shattering glass, and dirt with full multiplayer replication, and is heading live on Fab. Unsloth has quantized DeepSeek-V4.1-Flash-1017 to GGUF, with an abliterated build also trending on Hugging Face.
+
+00:03:23.975 --> 00:03:31.000
+Qwen3.5-4B-3D-Coder continues to climb on Hugging Face, now with a new quantization available.
+
+00:03:31.700 --> 00:03:34.150
+Now, a closer look at today's top stories.
+
+00:03:34.850 --> 00:03:57.100
+SculptForge is a free, open-source alternative to ZBrush designed for digital sculpting in VFX, animation, and game development. According to its GitHub page, the application runs natively on Linux, macOS, and Windows without requiring a subscription. It aims to replicate the familiar interface of ZBrush, including standard brushes, symmetry, and navigation controls, while offering source code under the GPL-3.0 license.
+
+00:03:57.100 --> 00:04:04.725
+The software is currently in an early release status, version 0.8, with core sculpting and pipeline features tested on every commit.
+
+00:04:05.425 --> 00:04:25.700
+The tool distinguishes itself by integrating free artificial intelligence directly into the sculpting environment. Users can utilize an AI brush creator or convert images and text into sculptable 3D models without needing an account or API key. The application supports alternative AI providers such as Claude, fal.ai, or Meshy, and allows models to run locally.
+
+00:04:25.700 --> 00:04:39.700
+It includes built-in support for Gaussian splats, OpenUSD, and sending assets directly to Unreal Engine with game-ready LODs. Recent updates have added dynamic topology, vector displacement brushes, and improved memory efficiency for large meshes.
+
+00:04:40.400 --> 00:05:01.000
+SculptForge does not directly read proprietary ZBrush files like .ZTL or .ZPR. Instead, it supports file exchange through GoZ-compatible files, which preserve face groups and masks, or through standard formats such as OBJ, FBX, and GLB. A plug-in for ZBrush allows users to convert their ZTool library once, enabling SculptForge to open those files subsequently.
+
+00:05:01.000 --> 00:05:17.625
+The project includes features like automatic quad retopology and texture painting on UVs, with version 0.5 introducing these capabilities. The tool is positioned as a complete pipeline solution, allowing artists to sculpt, generate LODs, and export to game engines without external plugins.
+
+00:05:18.325 --> 00:05:40.325
+A paper posted to arXiv introduces Coarse3D, a model designed to improve the initial stage of coarse-to-fine 3D generation. According to the authors, existing methods struggle with controlling orientation and maintaining consistency with input images. Coarse3D addresses these issues by producing orientation-controllable and structurally faithful voxel geometry from arbitrary unposed images.
+
+00:05:40.325 --> 00:05:46.175
+The system is intended to serve as a direct replacement for the coarse stage in existing generative pipelines.
+
+00:05:46.875 --> 00:06:11.625
+The model relies on three specific architectural designs. First, it uses a first-frame anchored canonical space that aligns generation with the first input view while preserving object-centric normalization. Second, it employs a dual-tower DiT that couples generation with auxiliary feed-forward reconstruction to learn spatially grounded features. Third, it applies spatial-prior guided attention to regularize cross-attention using pixel-to-voxel correspondence.
+
+00:06:11.625 --> 00:06:21.475
+The paper reports that experiments show the method substantially improves sparse structure quality and consistently enhances final 3D generation, achieving state-of-the-art performance.
+
+00:06:22.175 --> 00:06:44.450
+A new free add-on called Ichno generates technical drawings from a Blender scene in one click. According to its description on extensions.blender.org, the tool produces orthographic and isometric views with overall and chain dimensions. It also creates a full title block, including a logo, revisions, and custom fields, as well as a bill of materials. The output is exported as multi-page vector PDF and SVG files.
+
+00:06:44.450 --> 00:06:53.125
+Users can split drawings into one sheet per collection and choose between first or third angle projection. The system supports both metric and imperial units.
+
+00:06:53.825 --> 00:07:17.350
+The add-on is aimed at furniture and interior designers, woodworkers, product designers, and 3D printing makers who model in Blender and need printable plans. A key feature is that the drawing process runs in a second, background Blender instance on a copy of the file. This ensures the user’s original scene is never modified. By replacing the manual step of redrawing a model as dimensioned vector work, Ichno offers a quick way to document hero props before handoff.
+
+00:07:18.050 --> 00:07:34.650
+That's the Daily Tech Brief. This bulletin is made for personal use and generated with AI from public sources: the script is written by a language model and read by a synthetic voice. It can contain mistakes, so check the links in the episode notes. If you find it useful, you're welcome to listen and subscribe.
+

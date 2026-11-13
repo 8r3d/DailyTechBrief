@@ -1,0 +1,86 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.225
+This is the Daily Tech Brief for Monday, 9 November.
+
+00:00:03.925 --> 00:00:20.125
+A 31B video and audio diffusion model has been compressed to 14B parameters for 6 step inference. IV Studio 1.0 is now available on Linux and Mac as an open source ComfyUI wrapper. Megascans has made its library of over 23,000 3D scans free for commercial use.
+
+00:00:20.825 --> 00:00:27.250
+Later, a closer look at the compressed diffusion model, the SplatAnything paper, and the GPU FFT water update.
+
+00:00:27.950 --> 00:00:44.375
+A new release compresses a 31B video and audio diffusion model to 14B parameters. According to the Hacker News thread, the model runs at 6 steps in INT8. This pushes the H3 family trend toward running on less VRAM, similar to the quantized P-H3-Image derivative.
+
+00:00:45.075 --> 00:01:07.575
+IV Studio 1.0 is a free, open source application that bundles ComfyUI workflows for characters, sequences, editing and music. According to the r/comfyui thread, the app has been rebuilt from user feedback and now supports Linux and Mac. It acts as a wrapper where ComfyUI handles rendering while IV Studio sets up workflows. The author plans to add a GGUF option for low VRAM cards like the RTX 3060.
+
+00:01:08.275 --> 00:01:27.100
+Megascans has made its entire library free for games, VFX and visualization. According to CG Channel, over 23,000 high quality 3D scans of environment assets, buildings, plants and materials are now available without licensing costs. This serves as a counterweight to procedural routes like Koshizu Trees in an environment pipeline.
+
+00:01:27.800 --> 00:01:42.350
+Koshizu Trees has landed in Blender as a procedural asset. According to BlenderNation, the tool is built around Japanese species and the way they are grown, pruned and aged in gardens. It offers a curated procedural alternative to scanned foliage for stylized environments.
+
+00:01:43.050 --> 00:02:01.425
+An update to the GPU FFT water plugin adds rivers, shoreline waves and a non-tiling ocean. According to the r/unrealengine thread, the update includes physically accurate rivers, new FFT waves and physically based underwater rendering. It also adds Linux support, a gap the native water plugin has left open for years.
+
+00:02:01.425 --> 00:02:12.475
+The author backs the claims with measurements on an RTX 3060 Ti at 1080p, and commenters note that people do not realize how hard a workable ocean is in Unreal until they have to do it.
+
+00:02:13.175 --> 00:02:32.925
+A paper posted to HF Daily Papers introduces SplatAnything. The paper identifies a key limitation of existing feed-forward 3DGS methods, where Gaussian attributes are predicted in a radial-distance-normalized space. It normalizes spacing so the approach holds across arbitrary scenes, offering a direct improvement for 2D to 3D generation.
+
+00:02:33.625 --> 00:02:48.525
+Autodesk has released Flame 2027.2. According to CG Channel, the compositing tool gains USD scene import and an AI model for generating normal maps from video. The USD option is relevant for teams already routing assets through USD.
+
+00:02:49.225 --> 00:03:05.025
+Michael Gerard breaks down his Alpine Forest project in Unreal Engine 5. According to 80 Level, the project uses a custom FoliageLab tool to keep the mountain forest Nanite-ready. It shows how purpose-built vegetation tooling scales realistic environments without giving up Nanite.
+
+00:03:05.725 --> 00:03:25.100
+The P-H3-Image ComfyUI model continues to climb in popularity, up from 162 on 5 November. According to the HF Trending page, a quantized derivative has appeared, and new discussions ask about LoRA training. In the thread, commenters call the skin texture plastic and warn not to expect 16GB quality on 6GB VRAM.
+
+00:03:25.800 --> 00:03:48.075
+In brief. A breakdown on 80 Level shows how VALORANT's Hush was animated with Spine 2D and After Effects. A video series on r/GraphicsProgramming covers the math behind dynamic lighting in 2D pixel art, starting with normal maps. On r/proceduralgeneration, a generator builds 16 km squared of Central European wilderness at runtime in UE5, using Quixel Megascans for trees.
+
+00:03:48.075 --> 00:04:02.725
+HF Daily Papers features Frontier3DBench, which scores coding agents on 3D creation tasks. Finally, a masterclass on r/unrealengine covers post process materials in Unreal 5.8, including a security camera filter effect.
+
+00:04:03.425 --> 00:04:05.875
+Now, a closer look at today's top stories.
+
+00:04:06.575 --> 00:04:28.575
+HyperFlow H3 Flash is a compressed version of the MiniMax-H3 model, developed by Video Rebirth to generate video and synchronized stereo audio. According to its project page, the model reduces the original 31B parameter transformer to either 13.7B or 13.9B parameters. This compression allows the system to run in as few as 6 steps without classifier-free guidance.
+
+00:04:28.575 --> 00:04:40.150
+The output typically ranges from 5.2 to 15 seconds of video at 24 fps, with a default resolution of 1344 by 768 and a 32 kHz soundtrack.
+
+00:04:40.850 --> 00:05:03.500
+The release targets both consumer and data center hardware. In its smallest quantized form, known as Q4_K_M, the model requires only 9.1 GB of memory. The documentation states it runs on 24 GB and 32 GB GPUs in PCs with 16 GB of system RAM. Users can choose between GGUF formats for smaller GPUs or INT8 safetensors for larger cards.
+
+00:05:03.500 --> 00:05:22.050
+Speed benchmarks show a 5.2 second clip generating in 8.7 seconds on 4 B200 GPUs, 36 seconds on 1 H200, and 92 seconds on 1 RTX 5090. The project also notes that real-time inference is possible on 4 Blackwell GPUs through a partner called NVIDIA SOL-H3.
+
+00:05:22.750 --> 00:05:47.500
+A new paper posted to Hugging Face Daily Papers introduces SplatAnything, a method designed to improve feed-forward 3D Gaussian Splatting. The authors identify a key limitation in existing techniques, noting that Gaussian attributes are typically predicted in a radial-distance-normalized space. This approach canonicalizes a global radial statistic, but the spacing between neighboring Gaussian centers can still vary substantially across different scene scales and camera configurations.
+
+00:05:48.200 --> 00:06:06.300
+To address this mismatch, the team proposes Gaussian Spacing Normalization, or GSNorm. This technique canonicalizes a robust scene-level statistic of Gaussian spacing to provide a more consistent spatial reference for prediction. According to the paper, this consistency leads to more reliable supervision and improved performance.
+
+00:06:06.300 --> 00:06:16.400
+The authors also establish a systematic benchmark that spans diverse datasets, various input sparsity levels, and challenging extrapolated viewpoints to rigorously assess the method.
+
+00:06:17.100 --> 00:06:41.125
+Extensive experiments demonstrate that SplatAnything achieves state-of-the-art performance. The paper reports particularly strong gains under substantial variations in scene scale and viewpoint. The work is positioned as a direct improvement for two-dimensional to three-dimensional generation tasks. With 57 upvotes on the Hugging Face Daily Papers platform, the research highlights a practical solution for handling arbitrary scenes in 3D reconstruction pipelines.
+
+00:06:41.825 --> 00:07:05.625
+A new GPU FFT water update for Unreal Engine introduces physically accurate rivers, shoreline waves, and a non-tiling ocean. The update also adds physically based underwater rendering and Linux support, addressing a gap left by the native water plugin. According to the author on the Reddit thread, all media shown was captured inside the engine without editing or marketing tricks. Rivers are included in the DRW plugin rather than being sold separately.
+
+00:07:06.325 --> 00:07:28.950
+The author provided performance measurements taken on an RTX 3060Ti at 1080p with 100% screen percentage. For the ocean, compute shader passes with 512*512 8-cascade FFT Ultra Settings cost 2.4ms, while the single layer water material costs 3.9 ms. Rivers cost 0.8 ms for compute passes and 2.1 ms for the material.
+
+00:07:28.950 --> 00:07:43.575
+The author notes that for an RTX 5060Ti 16GB, these measurements can be divided by approx. 2.21. Commenters describe the asset as a bargain compared to hiring an engineer, noting the difficulty of creating a workable ocean in Unreal.
+
+00:07:44.275 --> 00:08:00.875
+That's the Daily Tech Brief. This bulletin is made for personal use and generated with AI from public sources: the script is written by a language model and read by a synthetic voice. It can contain mistakes, so check the links in the episode notes. If you find it useful, you're welcome to listen and subscribe.
+

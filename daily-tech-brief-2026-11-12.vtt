@@ -1,0 +1,149 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.300
+This is the Daily Tech Brief for Thursday, 12 November.
+
+00:00:04.000 --> 00:00:09.350
+Blender 5.3 has been released with Gaussian splatting and DLSS denoising in its core.
+
+00:00:10.050 --> 00:00:15.450
+ComfyUI LLM inference speed has doubled according to a top post on r/StableDiffusion.
+
+00:00:16.150 --> 00:00:21.525
+TRELLIS Studio is now available as a local app for 3D generation, rigging and animation.
+
+00:00:22.225 --> 00:00:26.875
+Later, a closer look at Blender 5.3, TRELLIS Studio and Inflect v3.
+
+00:00:27.575 --> 00:00:36.575
+Blender 5.3 has landed, integrating 3D Gaussian Splatting, DLSS denoising and layered compositing into its core, according to CG Channel.
+
+00:00:37.275 --> 00:00:43.225
+This update means splat-based capture and denoising now sit inside the same pipeline as the rest of scene work.
+
+00:00:43.925 --> 00:00:51.450
+The release marks a significant shift for the open-source DCC, moving these features from experimental add-ons to native functionality.
+
+00:00:52.150 --> 00:00:57.850
+ComfyUI LLM inference is now twice as fast, according to a top post on r/StableDiffusion.
+
+00:00:58.550 --> 00:01:03.350
+This is a real pipeline change for anyone routing LLM steps through ComfyUI.
+
+00:01:04.050 --> 00:01:12.175
+Commenters in the thread note that ComfyUI was much slower than Ollama or LM Studio before, so the gap narrows but dedicated runtimes still lead.
+
+00:01:12.875 --> 00:01:19.900
+TRELLIS Studio puts 3D generation, rigging and animation in one local app, according to a post on r/StableDiffusion.
+
+00:01:20.600 --> 00:01:28.475
+The local interface wraps TRELLIS generation with automatic rigging and animation, allowing generated characters to move without hand-rigging.
+
+00:01:29.175 --> 00:01:33.775
+It pairs with a mesh-recovery model, which can feed posed humans into the same pipeline.
+
+00:01:34.475 --> 00:01:40.650
+Iris-Z is a new general image generator based on Flux 2, according to a post on r/StableDiffusion.
+
+00:01:41.350 --> 00:01:47.550
+The model comes in 32B and 9B parameter versions and emits appearance and geometry together.
+
+00:01:48.250 --> 00:01:54.800
+The surface and shape coupling makes it worth a look for 3D work, and it lands alongside MiniMax H3 image posts.
+
+00:01:55.500 --> 00:02:05.975
+A 20-second anime video with audio has been rendered on an RTX 4070 Super 12GB with 16GB RAM in under 4 minutes, according to a post on r/comfyui.
+
+00:02:06.675 --> 00:02:14.600
+In the thread, the user notes that camera angles and transitions were explicitly specified per 5-second segment and H3 followed them well.
+
+00:02:15.300 --> 00:02:17.300
+The workflow is shared in the post.
+
+00:02:18.000 --> 00:02:24.725
+Mat-Baker is a free Blender add-on that bakes procedural node setups into PBR texture packs, according to BlenderNation.
+
+00:02:25.425 --> 00:02:31.150
+It auto-detects which texture maps a material's node graph can generate and bakes them into PBR packs.
+
+00:02:31.850 --> 00:02:37.200
+This pairs with the Blender 5.3 release as a way to ship procedural materials out to engines.
+
+00:02:37.900 --> 00:02:44.800
+Cloth Designer brings pattern-to-drape clothing into the UE 5.7 editor, according to a post on r/unrealengine.
+
+00:02:45.500 --> 00:02:51.975
+The editor plugin draws flat sewing patterns, sews them, and drapes the result on a MetaHuman without leaving Unreal.
+
+00:02:52.675 --> 00:02:58.925
+It is a full in-editor cloth pipeline that competes with the Unity stocking sim for the same stretchy-fabric problem.
+
+00:02:59.625 --> 00:03:07.325
+Inflect v3 is a 34M-parameter local TTS model under Apache 2.0, according to a post on r/LocalLLaMA.
+
+00:03:08.025 --> 00:03:11.250
+It is small enough to run local on the same box as scene work.
+
+00:03:11.950 --> 00:03:16.025
+The Apache 2.0 license makes it safe to wire into game audio pipelines.
+
+00:03:16.725 --> 00:03:23.975
+In brief, a free workflow runs H3 Singularity V2 on a 6GB GPU, according to a post on r/comfyui.
+
+00:03:24.675 --> 00:03:29.575
+The workflow covers text2video, img2video, multi-ref, audio and 4K upscale.
+
+00:03:30.275 --> 00:03:34.475
+A free tool edits Blender animation like mesh, according to 80 Level.
+
+00:03:35.175 --> 00:03:41.700
+It allows editing without switching to the Graph Editor, which is useful once auto-rigged characters land in Blender for cleanup.
+
+00:03:42.400 --> 00:03:49.075
+A WebGL technique write-up details animating fish with zero assets, according to a post on r/GraphicsProgramming.
+
+00:03:49.775 --> 00:03:56.125
+The method uses a travelling wave along a swept mesh of profile rings, with canvas-painted scales and backlit fins.
+
+00:03:56.825 --> 00:04:05.600
+A street football dev built a goal-net physics system in Unreal Engine 5 using a point-based constraint sim, according to a post on r/unrealengine.
+
+00:04:06.300 --> 00:04:11.550
+The net is built from scratch with connections that constrain stretching, skipping the cloth solver entirely.
+
+00:04:12.250 --> 00:04:14.700
+Now, a closer look at today's top stories.
+
+00:04:15.400 --> 00:04:38.250
+Blender 5.3 has been released, integrating 3D Gaussian Splatting, DLSS denoising, and layered compositing directly into the software core. According to the Blender Foundation, this update targets users in VFX, animation, and game development who previously relied on third-party add-ons for splat-based capture. The new version allows users to import data in standard formats like PLY, SPZ, glTF, and USD.
+
+00:04:38.250 --> 00:04:49.850
+This data can then be manipulated using Geometry Nodes and rendered in both the Cycles and Eevee engines. This native support means splat-based work now sits within the same pipeline as traditional scene creation.
+
+00:04:50.550 --> 00:05:13.825
+The release also introduces a new DLSS denoiser for the Cycles viewport, available to users with NVIDIA GPUs. It utilizes the Ray Reconstruction model from DLSS 4.5 to combine denoising and upscaling into a single model. According to the release notes, this approach virtually eliminates flickering between frames during animation playback. Additionally, Eevee receives six new Material Lighting nodes designed for non-photorealistic rendering.
+
+00:05:13.825 --> 00:05:27.725
+However, the Blender Developer blog notes that current tools for editing Splats are similar to point cloud tools and may feel clunky. Support for relighting, where scene lights illuminate the Splats rather than using baked-in lighting, is also described as rudimentary.
+
+00:05:28.425 --> 00:05:47.650
+TRELLIS Studio is a new local application that combines 3D generation, rigging, and animation into a single interface. According to its developer on Reddit, the tool uses TRELLIS.2 for image-to-3D generation and UniRig for automatic rigging. All computation runs locally, eliminating the need for paid generation services or credit systems.
+
+00:05:47.650 --> 00:06:10.225
+The software allows users to generate textured models from images or import existing assets, then organize them using collections and version history. A key feature is the ability to add a rig, inspect the skeleton, and attach multiple animations from a library of 83 humanoid motions. The application also supports creating LODs, preparing 3D printing copies, and exporting to Blender, GLB, Unity, or Unreal.
+
+00:06:10.225 --> 00:06:34.350
+Users can automate workflows and adjust skeleton points within the animation studio. While the current release focuses on humanoid characters, the developer states that quadruped support is planned for a future version. Some users noted that the hip joints in the sample animations appear anatomically incorrect, while others suggested potential integrations with other generation models. The tool is designed for creators who want to move generated characters without manual rigging.
+
+00:06:35.050 --> 00:06:58.750
+Inflect v3 is a new family of local text-to-speech models released under the Apache 2.0 license. According to its GitHub page, the release includes three variants: Mini, Micro, and Atom. The Mini model serves as the primary option, featuring 34.31M parameters and six distinct voices. It supports both CPU and CUDA environments, making it suitable for integration into game audio pipelines on the same hardware used for scene work.
+
+00:06:59.450 --> 00:07:18.550
+The Mini model offers specific features such as vocal-event tags, 48 kHz enhancement, and reference voice-tuning. This tuning capability allows users to create a profile from a recording to generate speech that resembles that reference. However, the source notes that while the voice adjusts noticeably, it will not replicate every speaker accurately.
+
+00:07:18.550 --> 00:07:34.175
+A user on Reddit reports that the quality surpasses standard alternatives like kokoroTTS, though they note some static artifacts that may be masked by background music in demo videos. The developer confirmed that standalone audio samples are available on the model card for clearer listening.
+
+00:07:34.875 --> 00:07:51.475
+That's the Daily Tech Brief. This bulletin is made for personal use and generated with AI from public sources: the script is written by a language model and read by a synthetic voice. It can contain mistakes, so check the links in the episode notes. If you find it useful, you're welcome to listen and subscribe.
+

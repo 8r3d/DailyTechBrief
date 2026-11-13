@@ -1,0 +1,89 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.225
+This is the Daily Tech Brief for Tuesday, 10 November.
+
+00:00:03.925 --> 00:00:09.075
+Unreal Engine 5.9 preview adds AI workflow tools and Web platform support.
+
+00:00:09.775 --> 00:00:14.300
+New LoRA and ComfyUI nodes target 3D texture inpainting and outpainting.
+
+00:00:15.000 --> 00:00:20.250
+A 467-run benchmark compares quantization formats on 10 GPUs.
+
+00:00:20.950 --> 00:00:32.700
+Later, a closer look at the 467-run quant benchmark, fixing SM-level load imbalance in 3D Gaussian Splatting, and neural texture compression that accounts for LOD and anisotropic filtering.
+
+00:00:33.400 --> 00:00:48.825
+Epic has released the Unreal Engine 5.9 preview. According to the release notes, the update bundles AI-assisted workflow tools with Web platform support and rendering and animation updates. The item notes that this release sets the pace for the Verse-driven direction of UE6.
+
+00:00:49.525 --> 00:01:03.900
+A new LoRA and custom nodes have been released for Qwen Image 2.1. According to users on Reddit, the tools target 3D texture inpainting and outpainting in ComfyUI. This allows users to patch and extend UV textures without leaving the node graph.
+
+00:01:04.600 --> 00:01:19.200
+Control LoRAs for MOSS-Image-SFT are now available. According to users on Reddit, the update adds pose, depth, and canny conditioning to the open MOSS-Image-SFT base. The item notes that this pairs with the 8-step DMD2 LoRA for fast, controllable output.
+
+00:01:19.900 --> 00:01:36.350
+The idol image-to-3D Gaussian splatting model is still climbing the Hugging Face trending list. According to its GitHub page, the model is up from 848 stars on 6 November. A quantized version has appeared, and new discussions cover an MCP server for idol and Claude Opus 5.5.
+
+00:01:37.050 --> 00:01:53.800
+A 467-run quant benchmark has been posted to Reddit. According to the post, it is the first head-to-head that puts int8 ConvRot, nvfp4, w4a8, and fp8 against bf16 on real hardware. The item states that this allows users to pick a quant by VRAM and drift.
+
+00:01:54.500 --> 00:02:12.400
+A paper posted to arXiv addresses SM-level load imbalance in 3D Gaussian Splatting on GPUs. According to the paper, 3DGS is increasingly used for photorealistic real-time rendering on commodity GPUs. The paper targets the SM-level load imbalance that caps how well those kernels use the GPU.
+
+00:02:13.100 --> 00:02:30.425
+A paper posted to arXiv presents neural texture compression that accounts for LOD and anisotropic filtering. According to the paper, the dominant feature-pyramid NTC design receives no filtering from the GPU texture hardware. The paper fixes this with explicit LOD-conditioned anisotropic filtering.
+
+00:02:31.125 --> 00:02:50.200
+A same-prompt throughput test was posted to Reddit. According to the post, Qwen 3.8 FN runs at 350 tokens per second, while DeepSeek V4.1 Flash runs at 94 tokens per second on an IQ1 quant. Commenters in the thread are impressed that the IQ1 DeepSeek quant holds up, while noting the Qwen side runs a stronger quant.
+
+00:02:50.900 --> 00:03:13.675
+In brief. CreativeField folds image, video, and 3D into one ComfyUI UI. According to users on Reddit, the interface includes a built-in photo editor for 3D-aware pipelines. Sonneblom Digitaal has gathered its 3D-printing range for Blender into one suite of 18 add-ons. According to BlenderNation, the suite is for Blender 4.2 LTS and newer. A field guide to Verse as the gameplay language has been posted to Reddit.
+
+00:03:13.675 --> 00:03:31.525
+According to the post, it walks through a pressure-plate-and-gate example to show changes for Blueprint developers. Qwen3.5-4B-3D-Coder is still climbing the Hugging Face trending list. According to its GitHub page, the model is up from 518 stars on 2 November, and eleven quantized builds have appeared since.
+
+00:03:32.225 --> 00:03:34.675
+Now, a closer look at today's top stories.
+
+00:03:35.375 --> 00:03:58.675
+A new quantization benchmark provides head-to-head data for five storage formats on real hardware. The test compares fp8 cast, fp8 scaled, int8 ConvRot, w4a8, and nvfp4 against the bf16 original. The author measured these formats on base and turbo versions of Anima, Z-Image, MOSS-Image, Krea 2, and SDXL/Illustrious. Quality was graded on an RTX PRO 6000 and a 3090.
+
+00:03:58.675 --> 00:04:14.875
+Speed and fit were timed on ten cards, including the PRO 6000, 5090, 5080, two 5070 Ti, 5060 Ti, 3090, 3080 Ti, 3080, and 3060 Ti. The setup uses stock ComfyUI with default memory handling, same seed, and same prompts.
+
+00:04:15.575 --> 00:04:39.475
+The report includes a tool to check if a specific card and model combination will run. A PDF version with every option laid out is also available. Users on Reddit noted the report is a bit of a hard read. One commenter requested more actual data rather than just conclusions. Another user asked about quality drops from fp8 scaled to nvfp4 on turbo models. They specifically wanted a side-by-side grid for SDXL/Illustrious to check for banding.
+
+00:04:39.475 --> 00:04:47.825
+A third user agreed with the ConvRot findings. The benchmark aims to help users pick a quantization method based on VRAM and drift instead of guesswork.
+
+00:04:48.525 --> 00:05:11.325
+A paper posted to arXiv details a new approach to fixing load imbalance in 3D Gaussian Splatting on GPUs. The authors identify a fundamental inefficiency in current rendering pipelines, where uneven workloads across screen tiles create a long execution tail. This leaves most Streaming Multiprocessors idle while a few handle computationally intensive tiles, a problem that is particularly severe in large-scale urban scenes.
+
+00:05:11.325 --> 00:05:19.175
+Existing solutions often require retraining or specialized hardware, which limits their flexibility across evolving 3DGS variants.
+
+00:05:19.875 --> 00:05:44.150
+The proposed solution is a software-defined GPU scheduling approach that uses a persistent kernel to prioritize heavy tiles and selectively chunks outlier tiles across multiple CTAs. A lightweight per-frame policy determines when and how much to chunk using tile statistics already available in the rendering pipeline. According to the paper, this method requires neither retraining nor specialized hardware and can be applied orthogonally to existing optimizations.
+
+00:05:44.150 --> 00:05:56.775
+Averaged per scene, the approach accelerates alpha blending by up to 2.93x on a large-scale urban scene and by up to 5.6x on its most imbalanced frames, while retaining the original alpha blending formulation.
+
+00:05:57.475 --> 00:06:16.275
+A paper posted to arXiv introduces a method called AF-NTC to improve neural texture compression. The authors note that the dominant feature-pyramid design currently receives no filtering from the GPU texture unit. This system learns each material at a fixed UV and level of detail, lacking an explicit anisotropic-filtering mechanism.
+
+00:06:16.275 --> 00:06:25.150
+According to the paper, setting the filter from the footprint aspect ratio alone is not enough because a single input cannot carry both the shape and size of the footprint.
+
+00:06:25.850 --> 00:06:43.850
+AF-NTC conditions the decoder on the same three bounded values a hardware sampler uses: minor-axis scale, aspect ratio, and major-axis orientation. These values drive a tap line along the major axis and a level blend across the minor axis. The model is trained against anisotropically filtered ground truth.
+
+00:06:43.850 --> 00:07:02.775
+The paper states that at 25% of a full BC7 mip chain, AF-NTC beats the no-AF trilinear-BC7 baseline on all ten material-scene pairs compared, with gains of +1.3 to +7.6 dB. It remains 0.0 to 3.4 dB below the 4x-larger anisotropic-BC7, depending on the material.
+
+00:07:03.475 --> 00:07:20.075
+That's the Daily Tech Brief. This bulletin is made for personal use and generated with AI from public sources: the script is written by a language model and read by a synthetic voice. It can contain mistakes, so check the links in the episode notes. If you find it useful, you're welcome to listen and subscribe.
+

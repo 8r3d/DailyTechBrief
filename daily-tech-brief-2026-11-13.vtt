@@ -1,0 +1,89 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.350
+This is the Daily Tech Brief for Friday, 13 November.
+
+00:00:04.050 --> 00:00:10.350
+The MiniMax H3-Image model continues to climb in popularity, with new quantized versions appearing daily.
+
+00:00:11.050 --> 00:00:17.375
+A fix has been implemented for batch processing in ComfyUI workflows for the MiniMax H3 and Pruna models.
+
+00:00:18.075 --> 00:00:24.675
+A new open-source tool called Accord GPU aims to prevent memory crashes by managing access to the graphics card.
+
+00:00:25.375 --> 00:00:29.200
+Later, a closer look at MiniMax H3-Image and CORTAO.
+
+00:00:29.900 --> 00:00:51.425
+The MiniMax H3-Image model is still gaining traction on Hugging Face, where it is trending. According to its GitHub page, the model has risen from 559 stars on 11 November. Since then, 10 fine-tunes and 9 quantized versions have appeared. The Comfy-Org single-file build is now one 24.6 GB CMF file that runs on CUDA and Vulkan from 4 GB of VRAM.
+
+00:00:51.425 --> 00:00:56.975
+New discussions on Reddit cover running the model on a MacBook with approximately 3 GB of memory.
+
+00:00:57.675 --> 00:01:16.275
+Batch size functionality has been fixed in the MiniMax H3 and Pruna image and video workflows. This update allows users to process a queue of variants without waiting for each one individually. In the thread, users note that cold runs still require the model to be loaded into VRAM, but the main benefit is seeing a batch of four or more at once.
+
+00:01:16.975 --> 00:01:34.725
+Accord GPU is a free, open-beta tool for Windows that arbitrates GPU access. It is designed to stop ComfyUI from crashing due to out-of-memory errors when another application uses the graphics card. This provides a practical solution for workstations where a 3D viewport and a diffusion queue share one GPU.
+
+00:01:35.425 --> 00:01:52.975
+A paper posted to arXiv introduces Sprint3D, which targets the bottleneck in image-to-3D generation. The authors state that the cost has shifted to iteration speed rather than model quality. The tool optimizes the generation pipeline itself rather than proposing a new model, which is useful for baking assets in batches.
+
+00:01:53.675 --> 00:02:08.825
+SPA Materials Baker V3.1 has been updated to bake Lumen lighting and reflections into textures. This new scene-rendering workflow allows a Lumen-lit scene to be shipped as baked assets. It pairs with the Nanite plugin, extending the capabilities of baked Unreal assets.
+
+00:02:09.525 --> 00:02:23.600
+Ryan King has demonstrated how to build realistic diamond materials procedurally in Blender 5.3. The technique creates convincing refraction without using scans. This serves as a Blender-side counterpart to similar work in Substance Designer.
+
+00:02:24.300 --> 00:02:39.400
+CORTAO is a physically based, ray-traced screen-space ambient occlusion technique that has been open-sourced. The author has released the code alongside the write-up. This allows it to be dropped directly into a renderer and benchmarked against existing screen-space AO implementations.
+
+00:02:40.100 --> 00:02:56.975
+Three open-weight adapters for object removal in Qwen-Image-2.1 have been released. These adapters, available in base, 6 and 8 steps, remove objects including shadows and reflections without affecting the rest of the frame. They are described as a practical cleanup step for ComfyUI generation pipelines.
+
+00:02:57.675 --> 00:03:10.950
+llama.cpp has been updated to version 1.0.0. This is the first stable release of the runtime used by most local large language model tooling. It is the version against which GGUF quantized models will be pinned going forward.
+
+00:03:11.650 --> 00:03:33.700
+In brief, a head-to-head comparison of H3, Krea 2, MOSS and FLUX 3 is circulating on Reddit. A fully automated feature-length film pipeline in ComfyUI has been built around the H3 model. Sungeun Moon has detailed the recreation of Cleopatra's Temple from AC Origins in Unreal Engine. The PXLD team has demonstrated relighting captured live-action people to match Unreal Engine scenes.
+
+00:03:33.700 --> 00:03:44.750
+Finally, DeepSeek-V4.1-Flash is running at near-NVFP4 quality on eight 2018 V100s, achieving 524K context at 100+ tokens per second.
+
+00:03:45.450 --> 00:03:47.900
+Now, a closer look at today's top stories.
+
+00:03:48.600 --> 00:04:11.300
+MiniMax H3-Image continues to climb in popularity, with its Hugging Face repository now at 930 stars. According to the news item, the model has seen significant community activity since its first feature on 11 Nov, including 10 fine-tunes and 9 quantized versions. The Comfy-Org single-file build is now a 24.6 GB CMF file that runs on CUDA and Vulkan from 4 GB of VRAM.
+
+00:04:11.300 --> 00:04:16.600
+New discussions also cover running the model on a MacBook with approximately 3 GB of memory.
+
+00:04:17.300 --> 00:04:39.625
+The source describes MiniMax-H3-Image as a state-of-the-art open-source model for image generation and editing. It unifies text-to-image generation and image editing in one checkpoint, supporting up to 16 reference images. The model generates images of about 16 megapixels at every aspect ratio, from 4096x4096 to 6272x2688, without an upscaler.
+
+00:04:39.625 --> 00:04:54.975
+Its diffusion transformer has 33.1B parameters and is distilled to 6 sampling steps with no classifier-free guidance. The full Qwen3-VL text encoder of MiniMax-H3 is used unchanged, with the DiT reading the hidden states of its 50th layer.
+
+00:04:55.675 --> 00:05:13.575
+The base model is 68.65 GB in BF16 precision. An optional prompt expander, MiniMax-H3-Image-PE, is available in NVFP4 at 17.9 GB. The source recommends inference frameworks including SGLang, vLLM-Omni, diffusers, LightX2V, and ComfyUI.
+
+00:05:13.575 --> 00:05:31.900
+vLLM-Omni supports both NVIDIA and AMD accelerators, including NVIDIA H200, RTX PRO 6000 Blackwell, and AMD Instinct MI350X. The text encoder is not included in the main repository but is loaded from the MiniMaxAI/MiniMax-H3 folder if already present.
+
+00:05:32.600 --> 00:05:55.475
+The developer behind CORTAO has open-sourced a new physically based ambient occlusion technique. According to the project's GitHub page, the code is released alongside a technical write-up, allowing developers to integrate it directly into existing renderers. The name stands for Circular Occluder Ray-Traced Ambient Occlusion. Unlike traditional horizon-based methods, CORTAO uses screen space raytracing with up to 32 rays per pixel.
+
+00:05:55.475 --> 00:06:11.525
+This approach is designed to overcome the inherent limitations of current state-of-the-art techniques. The author claims that through improved convergence and specific optimizations, the method delivers higher quality at a performance cost comparable to GTAO. It is intended to work without scene-specific tuning.
+
+00:06:12.225 --> 00:06:34.600
+The release has sparked discussion on r/GraphicsProgramming regarding the necessity of such tools in modern pipelines. In a thread, the author explains that even games with fully dynamic global illumination, such as AC: Shadows and Doom: The Dark Ages, still rely on screen-space occlusion. This is because the spatial resolution of dynamic GI is often insufficient to capture detailed contact shadows, particularly for foliage.
+
+00:06:34.600 --> 00:06:51.625
+The author notes that most AAA games continue to ship with these occlusion passes to manage performance budgets. Furthermore, CORTAO can integrate more deeply with GI systems. Because it identifies exact occluded directions, it allows for more effective directional occlusion effects than standard bent normals can provide.
+
+00:06:52.325 --> 00:07:08.925
+That's the Daily Tech Brief. This bulletin is made for personal use and generated with AI from public sources: the script is written by a language model and read by a synthetic voice. It can contain mistakes, so check the links in the episode notes. If you find it useful, you're welcome to listen and subscribe.
+

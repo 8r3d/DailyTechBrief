@@ -1,0 +1,92 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.250
+This is the Daily Tech Brief for Friday, 30 October.
+
+00:00:03.950 --> 00:00:09.325
+OpenJutsu arrives as a local, one-click video character swap tool built on ComfyUI.
+
+00:00:10.025 --> 00:00:17.975
+A custom C sharp and D3D12 engine renders 27.4 billion triangles at over 260 frames per second.
+
+00:00:18.675 --> 00:00:24.475
+MLSLabsRender V2 brings 3D and 4D Gaussian Splatting into Unreal Engine 5.
+
+00:00:25.175 --> 00:00:29.425
+Later, a closer look at OpenJutsu and the hybrid rasterization engine.
+
+00:00:30.125 --> 00:00:47.075
+OpenJutsu is an open, local alternative to Higgsfield's Genjutsu, built on ComfyUI. According to its GitHub page, it uses MiniMax H3 as the base model and FLUX.3 Klein for relighting. The release lands while Higgsfield is reported to be threatening legal moves against the open ecosystem that spawned it.
+
+00:00:47.775 --> 00:01:08.100
+A custom engine written in unmanaged C sharp and D3D12 hits 260+ fps on 100k instances of a 274k-tri mesh. The performance is achieved by mixing software and hardware rasterization with a VisBuffer. Users on Reddit note this offers a concrete recipe for instance-heavy scenes that choke on pure GPU raster.
+
+00:01:08.100 --> 00:01:20.625
+In the thread, the top question concerns how animated, skinned, or morphed meshes would be handled, specifically regarding reconstruction. One commenter asks for 100k instances of different models to test the system further.
+
+00:01:21.325 --> 00:01:36.500
+MLSLabsRender V2 puts 3D and 4D Gaussian Splatting into Unreal Engine 5. The release includes a walkthrough that takes splats into the engine and out to Pico headsets. This serves as the practical delivery counterpart to capture-side research discussed elsewhere.
+
+00:01:37.200 --> 00:01:52.200
+Adobe has rebuilt Substance Painter's baking around a new cage painting workflow. According to 80 Level, Adobe made baking a priority following long-standing user complaints. The update improves the daily texture-bake pass without requiring users to leave their DCC setup.
+
+00:01:52.900 --> 00:02:14.400
+One agent has driven a full music video, handling the storyboard, ComfyUI animation, and lyric titles. The author wrote the lyrics and the Suno track, while the Hermes Agent rendered stills, animated them, and added titles. The human only directed and approved each step. Commenters on Reddit describe Hermes as an open-source agent harness that drives ComfyUI workflows over its API, using Claude or a local LLM.
+
+00:02:14.400 --> 00:02:18.300
+They ask which local models pair best with it for image and video work.
+
+00:02:19.000 --> 00:02:33.475
+Pika H3 Flex is an open image-to-video model trending on Hugging Face. The base model is MiniMax H3. A post on r/StableDiffusion benchmarks the official 6-step pipeline against a fused 4-step Turbo LoRA for users who want fewer steps.
+
+00:02:34.175 --> 00:02:49.800
+Dead Simple Motion provides live procedural motion for Blender objects, cameras, and bones. According to BlenderNation, the tool skips the repeated constraint, driver, and looping-keyframe setup. It saves time on the repetitive animation plumbing that Blender tech artists usually script around.
+
+00:02:50.500 --> 00:03:04.700
+Bento is a new shading language and shader compiler aimed at tool builders. It is designed for building shaders and shader tools rather than feeding a single engine. This offers a route for tech artists to own a toolchain instead of being pinned to HLSL or Metal.
+
+00:03:05.400 --> 00:03:06.600
+In brief.
+
+00:03:07.300 --> 00:03:21.150
+MetaWrap converts sculpts, scans, and AI characters into Unreal MetaHumans from Blender. According to CG Channel, the tool suite by character artist Elvis Morelli bridges the gap between off-Unreal character work and the MetaHuman pipeline.
+
+00:03:21.850 --> 00:03:31.700
+Lumen realtime handles the lighting on a full archviz animation in Unreal Engine 5. Users on Reddit highlight this as a workflow for cinematic looks without a bake pass.
+
+00:03:32.400 --> 00:03:45.725
+GOFish is a method for full field-of-view Gaussian Splatting with mesh extraction. A paper posted to arXiv says it builds simulation-ready digital twins from fisheye and 360-degree cameras, aimed at robots and autonomous vehicles.
+
+00:03:46.425 --> 00:04:01.975
+A paper posted to arXiv reports that Vision Language Models fail at 3D by not retaining exact object properties between queries. The models get individual judgments right but struggle to recover and consistently use exact properties, a failure that affects procedural pipelines.
+
+00:04:02.675 --> 00:04:05.125
+Now, a closer look at today's top stories.
+
+00:04:05.825 --> 00:04:29.950
+OpenJutsu is an open-source tool that allows users to swap characters and objects in video entirely on their own hardware. According to its GitHub page, the project serves as a local alternative to Higgsfield’s Genjutsu. It runs on open weights, utilizing MiniMax H3 for video generation, SAM 3.1 for tracking people, and Qwen3-VL 8B to describe images and shots. The application features a Next.js front end built over a ComfyUI workflow.
+
+00:04:29.950 --> 00:04:39.250
+Users can replace the main person in a video, change hair or clothes, remove items, or alter backgrounds while keeping the original camera movement and soundtrack intact.
+
+00:04:39.950 --> 00:05:02.000
+The system offers several modes, including simple and advanced motion transfer, object swap, and post-processing. Advanced transfer supports up to 4 characters, matching each tracked person to a specific role per shot. For object swaps, users can change what SAM 3.1 tracks, such as hair or a car, or remove it entirely. The tool also includes a relight feature powered by FLUX, which can adjust lighting in the same pass.
+
+00:05:02.000 --> 00:05:15.850
+However, the source notes that H3 draws faces poorly when a person is small in the frame, requiring a separate face-fixing step. Users must choose a compatible vision-language model based on their available VRAM, as file size does not equal memory requirements.
+
+00:05:16.550 --> 00:05:35.000
+A custom D3D12 engine written in unmanaged C# has reached 263 FPS while rendering 100,000 instances of the Stanford Dragon. According to the project’s GitHub page, each mesh contains 274k triangles, creating a total of approximately 27.4 billion raw triangles.
+
+00:05:35.000 --> 00:05:59.175
+The developer reports achieving this performance on an RTX 4070 Ti at 2K resolution, with a frame time of about 3.8 milliseconds and GPU utilization near 86 percent. The system evolved from pure geometry culling into a full deferred visibility buffer pipeline. It uses dynamic cluster routing to split work, sending sub-pixel or micro-triangles to a compute software rasterizer while larger meshlets pass through hardware Mesh Shaders.
+
+00:05:59.175 --> 00:06:22.050
+This hybrid approach creates a compact visibility buffer for deferred texturing. On Reddit, users asked how the engine would handle animated, skinned, or morphed meshes, particularly regarding reconstruction. The developer stated that animation on meshlets is not as straightforward as traditional vertex transformation and that no specific plan exists yet. Another commenter requested a test with 100k instances of different models.
+
+00:06:22.050 --> 00:06:34.000
+The developer explained that different models using the same shader are rendered with the exact same draw call, requiring only different vertex and index buffers fetched on the fly, which places more demand on the meshlet streaming system.
+
+00:06:34.700 --> 00:06:51.300
+That's the Daily Tech Brief. This bulletin is made for personal use and generated with AI from public sources: the script is written by a language model and read by a synthetic voice. It can contain mistakes, so check the links in the episode notes. If you find it useful, you're welcome to listen and subscribe.
+

@@ -1,0 +1,92 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.475
+This is the Daily Tech Brief for Thursday, 19 November.
+
+00:00:04.175 --> 00:00:08.175
+Open Reality turns phone video into AI-queryable 3D scenes.
+
+00:00:08.875 --> 00:00:14.125
+Triangle splatting gives real-time 3DGS SLAM maps usable surface geometry.
+
+00:00:14.825 --> 00:00:20.450
+Meituan open-sources LongCat-Video-Avatar 1.6, an audio-driven video avatar model.
+
+00:00:21.150 --> 00:00:35.650
+Later, a closer look at Triangle splatting gives real-time 3DGS SLAM maps usable surface geometry, Open Reality turns phone video into AI-queryable 3D scenes, and Tideway: phase-aware tiered memory for MoE inference on consumer devices.
+
+00:00:36.350 --> 00:00:59.450
+Open Reality turns phone video into AI-queryable 3D scenes. The project, which includes MCP tools for Claude, Codex and Cursor and the VGGT-SLAM library in one repository, is still climbing in popularity. According to its GitHub page, the project is up from 321 stars on 13 Oct, when it was first featured, to 661 stars. Version 0.4.0, released on 20 Oct, adds a MuJoCo export.
+
+00:00:59.450 --> 00:01:09.675
+This feature allows a single call to take a scene to a loadable MuJoCo model and return the path to scene.xml, creating a direct bridge from phone capture to physics-ready assets.
+
+00:01:10.375 --> 00:01:34.275
+Triangle splatting gives real-time 3DGS SLAM maps usable surface geometry. Dense 3D Gaussian Splatting SLAM builds maps that render photorealistically but have poor surface geometry. Extracting a mesh is the known pain point in this workflow. A paper posted to arXiv says Facet-SLAM swaps in triangle splatting so the real-time map keeps a usable surface. This is described as the fix needed to get GS captures into a mesh-based pipeline.
+
+00:01:34.975 --> 00:01:55.500
+Meituan open-sources LongCat-Video-Avatar 1.6, an audio-driven video avatar model. The model ships with ONNX, diffusers and safetensors weights plus audio-to-video continuation. According to its Hugging Face page, it can drive character video from a voice track without a closed API. It is presented as a direct open-weights alternative to other trending video models.
+
+00:01:56.200 --> 00:02:15.900
+Tideway: phase-aware tiered memory for MoE inference on consumer devices. This is a systems-level answer to running large MoE models locally. It uses phase-aware tiered memory management. According to its Hugging Face Daily Papers page, it is the infrastructure twin of the quantized Qwen3.8 models. One trims the weights, the other trims the memory traffic.
+
+00:02:16.600 --> 00:02:37.150
+Physically based light transport for underwater Gaussian splatting. Underwater 3DGS is hard because water mixes attenuated scene radiance, backscattered light and scene light into every pixel. A paper posted to arXiv says NIRJALA models that three-path optics with reversible physics. This allows splats to represent what the water actually did to the light rather than tinting the result.
+
+00:02:37.850 --> 00:02:56.875
+Paper probes how well motion diffusion models encode physics in their activations. A paper posted to arXiv argues video diffusion models know more than they show. It states that physical properties decode better from their internal activations than from the frames they emit. This matters if you are judging whether gen video is physically plausible enough for game content.
+
+00:02:57.575 --> 00:03:13.100
+Inworld's voice-isolator pulls a clean voice out of a noisy recording. This is an open 48 kHz audio-to-audio model for voice isolation and denoising. According to its Hugging Face page, it is useful for rescuing a dialogue take or cleaning up foley without a re-recording pass.
+
+00:03:13.800 --> 00:03:35.750
+MIRACO 2 moves scan-to-CAD from post-processing onto the scanner. Revopoint's Kickstarter launch pairs 0.02 mm accuracy, six scanning modes and full-color capture with onboard processing and 3D Gaussian Splatting. According to 80 Level, the automated scan-to-CAD step happens in the device. This offers a shorter loop from physical object to editable CAD than the scan-then-model workflow it competes with.
+
+00:03:36.450 --> 00:03:55.725
+In brief. Cactus-Compute's mirage is an open-weights vision model covering zero-shot object detection, segmentation and classification in one checkpoint. A write-up of using LLMs for reverse engineering pulled 208 points on HN. QDA uses agents to pick the post-training quantization recipe per model and precision instead of hand-tuning.
+
+00:03:56.425 --> 00:03:58.875
+Now, a closer look at today's top stories.
+
+00:03:59.575 --> 00:04:16.275
+A paper posted to arXiv introduces Facet-SLAM, a new system for real-time 3D Gaussian Splatting SLAM. Dense SLAM systems based on 3D Gaussian splatting build maps that render photorealistically, but their surface geometry is poor, and obtaining a mesh requires extraction or fusion stages.
+
+00:04:16.275 --> 00:04:29.800
+Triangle splatting avoids this with surface primitives whose vertices can be triangulated directly into a connected mesh, yet SLAM with this representation has so far relied on photometric tracking, which is too slow for localization at sensor rate.
+
+00:04:30.500 --> 00:04:48.550
+Facet-SLAM is described as the first real-time triangle splatting SLAM system for RGB-D cameras. The authors note that fast geometric registration is the natural alternative, but it is not sufficient alone, since the mapper's optimization displaces triangles from the observed surface and makes them unreliable registration targets.
+
+00:04:48.550 --> 00:05:00.950
+The system separates the two roles: the tracker sets each triangle's centroid from fused depth and registers frames to these centroids by GICP, while the mapper is restricted to non-translating updates via a change of variables.
+
+00:05:01.650 --> 00:05:25.475
+According to the paper, the system achieves competitive tracking accuracy at around 100 FPS on a desktop GPU and runs at sensor rate on a Jetson AGX Orin. Compared with the photometric approach, it is over 20 times faster, matches rendering quality, and improves surface accuracy, reducing the chamfer distance of the Delaunay mesh on Replica from 1.55 to 0.86 cm. The authors state that the implementation will be released on GitHub.
+
+00:05:26.175 --> 00:05:47.975
+Open Reality continues to gain traction on GitHub, with its star count rising from 321 on 13 Oct to 661. The project converts phone video into AI-queryable 3D scenes, providing a bridge between mobile capture and digital assets. According to its repository, the system builds on the VGGT-SLAM work by Dominic Maggio, Hyungtae Lim, and Luca Carlone from the MIT SPARK Lab.
+
+00:05:47.975 --> 00:06:04.375
+A recent update, version 0.4.0, adds a MuJoCo export feature. This allows a single call to transform a scene into a loadable MuJoCo model, returning the path to the scene.xml file. This functionality creates a direct link to physics-ready assets for robotics applications.
+
+00:06:05.075 --> 00:06:23.775
+The tool exposes 42 capabilities through MCP, supporting clients like Claude, Codex, and Cursor. Users can upload video files to generate persistent 3D scenes, measure distances, and plan paths. The project includes an offline simulator that uses fixture data, enabling development without a GPU or external account.
+
+00:06:23.775 --> 00:06:46.475
+While the repository is licensed under BSD-2-Clause, the underlying 3D reconstruction model, VGGT-1B, is restricted to non-commercial use under a CC BY-NC 4.0 license. For commercial applications, the source advises using the hosted service or obtaining a separate license from the model owners. The system also features self-hosting options, where a single token printed at first start serves as the login credential.
+
+00:06:47.175 --> 00:07:10.150
+Tideway is a new system designed for running large Mixture-of-Experts models on consumer devices. According to a paper posted to arXiv, the tool addresses the limited memory on personal computers by managing host RAM and GPU VRAM as a single unified pool. This approach is necessary because consumer hardware lacks the abundant memory found in datacenter servers, forcing model weights to spill across different storage tiers.
+
+00:07:10.150 --> 00:07:17.100
+The authors note that existing systems often treat these tiers as independent caches, which leads to inefficiency during inference.
+
+00:07:17.800 --> 00:07:41.825
+The system works by using phase-aware memory layouts that adapt to the specific access patterns of prefill and decode stages. It also features an execution engine that optimizes CUDA Graph execution under expert paging. Evaluations on representative consumer hardware show that Tideway significantly outperforms state-of-the-art systems. On average, the paper reports speedups of 1.97x in end-to-end latency and 2.40x in Time-to-First-Token.
+
+00:07:41.825 --> 00:07:50.725
+It also achieves 1.61x higher decode throughput compared to the fastest baseline. The source code for the project is publicly available on GitHub.
+
+00:07:51.425 --> 00:08:08.025
+That's the Daily Tech Brief. This bulletin is made for personal use and generated with AI from public sources: the script is written by a language model and read by a synthetic voice. It can contain mistakes, so check the links in the episode notes. If you find it useful, you're welcome to listen and subscribe.
+

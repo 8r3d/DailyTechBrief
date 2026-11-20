@@ -1,0 +1,95 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.400
+This is the Daily Tech Brief for Wednesday, 18 November.
+
+00:00:04.100 --> 00:00:10.000
+MiniMax-H3-Image continues to climb, with a new thread demonstrating it runs in 2GB VRAM.
+
+00:00:10.700 --> 00:00:16.800
+A new LoRA for Qwen-Image-2.1-turbo enables multi-reference image-to-image workflows in ComfyUI.
+
+00:00:17.500 --> 00:00:23.750
+FaceRiff synthesizes UV-mapped, PBR-displaced face assets from text, according to a paper posted to arXiv.
+
+00:00:24.450 --> 00:00:29.300
+Later, a closer look at MiniMax-H3-Image, FaceRiff, and Cross3DGS.
+
+00:00:30.000 --> 00:00:52.850
+The MiniMax-H3-Image model is still climbing in popularity, up from 930 stars on 13 November, according to its Hugging Face page. It was first featured on 11 November. Since then, 2 quants, 1 fine-tune and 5 adapters have appeared. A new thread reports running the full BF16 model in 4GB RAM and 2GB VRAM via ncnn/Vulkan on NVIDIA, AMD, Intel and Apple GPUs.
+
+00:00:52.850 --> 00:00:56.800
+Comfy-Org's ComfyUI port plus a GGUF build are trending with it.
+
+00:00:57.500 --> 00:01:11.025
+A fine-tuned LoRA for Qwen-Image-2.1-turbo is now available for multi-reference image-to-image tasks, according to its Hugging Face page. The asset is ComfyUI-ready. It is sitting alongside the MiniMax-H3 workflows in the trending section.
+
+00:01:11.725 --> 00:01:31.050
+FaceRiff synthesizes UV-mapped, PBR-displaced face assets from text, according to a paper posted to arXiv. Unlike 3DGS scene-reconstruction papers, FaceRiff targets a single asset class, which is faces. It outputs consistent UV-mapped geometry with albedo and physically based displacement. This is described as the scarce data for character work.
+
+00:01:31.750 --> 00:01:44.850
+A domain-tuned super-resolution stage pushes generative face maps up to 4K albedo and displacement detail, according to a paper posted to arXiv. This closes the resolution gap in facial asset pipelines for PBR close-ups.
+
+00:01:45.550 --> 00:02:05.050
+Cross3DGS trains 3D Gaussian Splatting on Vulkan, according to a paper posted to arXiv. The pipeline change is the backend. Instead of shipping handheld and wearable captures to a CUDA workstation, Cross3DGS trains from workstations down to mobile. It is the training foundation the other two 3DGS papers in this bulletin build on.
+
+00:02:05.750 --> 00:02:21.325
+SSA-3DGS removes screen-space artifacts from 3D Gaussian Splatting unsupervised, according to a paper posted to arXiv. It drops the assumption of clean, multi-view consistent posed input. This addresses a failure mode the other 3DGS papers assume away.
+
+00:02:22.025 --> 00:02:41.800
+Gaussian splatting scales past GPU memory with out-of-core optimization, according to a paper posted to arXiv. Standard splatting training assumes every primitive fits in VRAM. DOOM-GS moves the pipeline out-of-core so scenes larger than GPU memory can still be optimized. This is the memory-management piece needed before splatting assets get production-scale.
+
+00:02:42.500 --> 00:03:00.000
+Qwen3.5-9B arrives as an imatrix-quantized GGUF with MTP, according to its Hugging Face page. NEO imatrix quants plus multi-token-prediction support make it one of the more complete local 9B packages this week. The image-text-to-text tag means it reads screenshots as well as text.
+
+00:03:00.700 --> 00:03:23.350
+In brief, a RoPE-enhanced diffusion method tiles user-specified textures into scene images without seams, according to a paper posted to arXiv. UnitParticles brings a Unity-like particle workflow to Blender, according to Real Time VFX. A small Rust plus WebGPU lab for prototyping rendering algorithms is available on GitHub. Beliakouski blocks out and bakes game-ready flintlock pistols, according to 80 Level.
+
+00:03:24.050 --> 00:03:26.500
+Now, a closer look at today's top stories.
+
+00:03:27.200 --> 00:03:51.300
+MiniMax-H3-Image continues to gain traction on Hugging Face, with a new discussion thread describing how to run the full BF16 model using only 4GB of system RAM and 2GB of VRAM. According to the news item, this setup uses ncnn and Vulkan, supporting GPUs from NVIDIA, AMD, Intel, and Apple. This development follows the model's initial feature on 11 November and its rise from 930 stars on 13 November.
+
+00:03:51.300 --> 00:04:01.000
+Since then, the community has produced 2 quants, 1 fine-tune, and 5 adapters. Additionally, Comfy-Org's ComfyUI port and a GGUF build are trending alongside the model.
+
+00:04:01.700 --> 00:04:21.825
+The source describes MiniMax-H3-Image as a state-of-the-art open-source model for image generation and editing. It unifies text-to-image generation and image editing in a single checkpoint. The model generates images of about 16 megapixels at various aspect ratios, directly without an upscaler. It is distilled to 6 sampling steps with no classifier-free guidance.
+
+00:04:21.825 --> 00:04:44.900
+The architecture uses a diffusion transformer with 33.1B parameters and a dense single-stream transformer with 50 layers. The text encoder is the full Qwen3-VL text encoder from MiniMax-H3. The model supports up to 16 reference images for editing. The full BF16 model weighs 68.65 GB, though the new low-VRAM method significantly reduces memory requirements for local inference.
+
+00:04:45.600 --> 00:05:09.625
+FaceRiff is a new framework that generates complete 3D face assets from text prompts. A paper posted to arXiv explains that the system targets a specific gap in digital human rendering, where high-resolution facial datasets with consistent UV-mapped geometry and physically based displacement are scarce. Unlike previous methods that are often slow or require large specialized datasets, FaceRiff produces render-ready meshes, albedo, and displacement directly from text.
+
+00:05:10.325 --> 00:05:35.100
+The system works by adapting a pretrained SDXL backbone using task-specific LoRA adapters. It uses UV normal maps as geometric conditioning to guide the synthesis of albedo and displacement. According to the source, FaceRiff was trained on only 2,049 scans from approximately 350 identities using a single GPU. This approach updates less than 3% of the backbone parameters per task and does not require per-instance optimization.
+
+00:05:35.100 --> 00:05:41.650
+The authors note that the generated albedo is lighting-independent, making it suitable for physically based rendering relighting.
+
+00:05:42.350 --> 00:06:00.950
+The paper reports that FaceRiff produces greater per-prompt diversity than comparable methods like FaceG2E and DreamFace while maintaining fixed-topology UV consistency. A blind study involving 45 industry professionals found that FaceRiff achieves substantially higher perceived realism than DreamFace, approaching the quality of real captures.
+
+00:06:00.950 --> 00:06:09.425
+The results suggest that pretrained diffusion priors can be effectively adapted for unified 3D face asset synthesis even under limited data conditions.
+
+00:06:10.125 --> 00:06:29.675
+A paper posted to arXiv introduces Cross3DGS, a tool that trains 3D Gaussian Splatting directly on Vulkan. Currently, scenes captured with handheld or wearable cameras are usually sent to a CUDA workstation for processing. Cross3DGS changes this by allowing the training to happen on the capturing device or a companion phone and laptop.
+
+00:06:29.675 --> 00:06:53.050
+The authors explain that moving training to these devices is difficult because GPUs and drivers differ in parallel features, memory limits, and command submission. These differences determine whether a training schedule runs correctly. Cross3DGS solves this by using a single optimizer that selects an execution schedule per device. It first uses rules based on device limits and observed driver failures to exclude schedules that do not work.
+
+00:06:53.050 --> 00:06:57.825
+Then, it selects one of the remaining feasible schedules using a fixed preference order.
+
+00:06:58.525 --> 00:07:16.775
+According to the paper, the system completes standard-quality training on every measured configuration. This includes NVIDIA, Intel, Arm, Qualcomm, AMD, and Apple GPUs, as well as Android devices and an iPhone. The authors note that existing portable trainers like VkSplat and Brush do not run on some mobile GPUs.
+
+00:07:16.775 --> 00:07:41.000
+In tests averaged over 11 scenes on a workstation, Cross3DGS achieved higher quality than VkSplat with no significant difference in training time. Brush, by contrast, reported about three times the training time at comparable quality. The final quality of Cross3DGS is nearly identical across different devices. The paper also describes a mobile application that turns a handheld capture into a viewable model entirely on the device.
+
+00:07:41.700 --> 00:07:58.300
+That's the Daily Tech Brief. This bulletin is made for personal use and generated with AI from public sources: the script is written by a language model and read by a synthetic voice. It can contain mistakes, so check the links in the episode notes. If you find it useful, you're welcome to listen and subscribe.
+

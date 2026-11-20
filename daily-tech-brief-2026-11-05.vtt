@@ -1,0 +1,89 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.225
+This is the Daily Tech Brief for Thursday, 5 November.
+
+00:00:03.925 --> 00:00:08.850
+ComfyUI v0.44.0 has shipped with partner nodes for H3 Max editing.
+
+00:00:09.550 --> 00:00:14.325
+MiniMax H3 remains the central open-weights video model in today's workflows.
+
+00:00:15.025 --> 00:00:20.050
+RefMods offers consistent character references for H3 on a 6 GB GPU.
+
+00:00:20.750 --> 00:00:27.150
+Later, a closer look at GaussianRenderFormer, AnchorComplete, and CCORE GLB-3D-Coder 4B.
+
+00:00:27.850 --> 00:00:40.975
+ComfyUI v0.44.0 has been released with partner node updates. According to the release notes, this includes support for MiniMax H3 Max editing. This ensures that H3 workflows run on the current version of ComfyUI.
+
+00:00:41.675 --> 00:00:56.800
+MiniMax H3 is the image-text-to-video model underlying today's featured workflows. It appears on the Hugging Face trending list with 6598 stars. The ComfyUI v0.44.0 release ships partner nodes specifically for its Max editing mode.
+
+00:00:57.500 --> 00:01:11.875
+RefMods is a free workflow that adds consistent character and voice references to MiniMax H3. According to users on Reddit, it runs on a 6 GB GPU. This provides a practical solution for shot-to-shot consistency in H3 pipelines.
+
+00:01:12.575 --> 00:01:34.350
+Fizgig 9.0.4 has been released, adding Fibo 2.0 training capabilities. This allows for LoRAs, edit LoRAs, sliders, and full fine-tunes from a 12 GB card. It includes 4-step Turbo previews, Z-Image Base support, and Sam 3.1 masks. All saved outputs load directly into ComfyUI. In the Reddit thread, commenters discuss how the Muon optimizer compares to Automagic V4.
+
+00:01:34.350 --> 00:01:39.425
+They also note that starting at a smaller size can reduce training time by about 20 percent.
+
+00:01:40.125 --> 00:01:55.700
+AnchorComplete is a new method for image-based 3D reconstruction. According to a paper on Hugging Face Daily Papers, it addresses unobserved geometry by recovering complete scene meshes from partial point clouds. This is a step toward turning photo captures into usable full assets.
+
+00:01:56.400 --> 00:02:12.000
+GaussianRenderFormer is a new approach to rendering 3D Gaussian splats. A paper posted to arXiv cs.GR asks whether a transformer can learn to render splats without a rasterizer. If successful, this would replace the last hand-written stage of the splatting pipeline with a learned process.
+
+00:02:12.700 --> 00:02:23.000
+CCORE GLB-3D-Coder 4B has shipped final weights. According to users on Reddit, it is a 4B model that emits GLB files. It is small enough to run locally.
+
+00:02:23.700 --> 00:02:35.150
+A fully procedural Mars terrain demo has been shared for Unreal Engine. According to users on Reddit, no assets in the demo are hand-made. The only inputs are NASA's real Mars elevation and albedo maps.
+
+00:02:35.850 --> 00:02:56.425
+In brief, a real-time procedural sky add-on for Blender has been updated, allowing instant updates for clouds and lighting in the viewport. An open-source UE5 plugin for streaming BIM data has been released, allowing tech artists to pull large architectural geometry into the engine. Valve has warned of slower Steam approval processing, possibly due to a surge in AI-made games.
+
+00:02:56.425 --> 00:03:14.450
+A custom engine demo shows 130 fps average at 1440p on an RTX 3080, with 200 fps in aerial views and 80 fps in dense forest. Finally, a paper titled Think Less, Locally proposes compressing reasoning without losing accuracy to cut inference costs for local setups.
+
+00:03:15.150 --> 00:03:17.600
+Now, a closer look at today's top stories.
+
+00:03:18.300 --> 00:03:37.600
+GaussianRenderFormer is a new transformer model proposed in a paper on arXiv that attempts to render 3D Gaussian splats without using a traditional rasterizer. The system takes a set of Gaussians and a camera as input and outputs the final image directly. According to the source, each Gaussian is converted into a single token within a view-independent encoder.
+
+00:03:37.600 --> 00:03:54.850
+A separate view-dependent decoder then processes small patches of camera rays to generate pixels by attending to those tokens. This approach aims to replace the final hand-written stage of the splatting pipeline with a learned component, which is relevant for developers integrating 3D Gaussian splatting into custom engines.
+
+00:03:55.550 --> 00:04:18.650
+The model was trained on 26,820 Objaverse objects, with each object pruned to 20,000 Gaussians. The authors report that GaussianRenderFormer renders 300 unseen objects with a PSNR of 38.08 dB against the full, unpruned splats. In comparison, rasterizing the same pruned input achieves 44.02 dB. The paper states that this performance gap is not due to generalization issues.
+
+00:04:18.650 --> 00:04:31.375
+Diagnostics suggest a bottleneck in the view decoder, as providing the projected footprint of each Gaussian adds 1.4 dB to the score. The authors note that under-training is not ruled out as a cause for the current performance level.
+
+00:04:32.075 --> 00:04:53.125
+AnchorComplete addresses a key weakness in image-based 3D reconstruction by recovering complete scene meshes from partial point clouds. According to a paper posted to arXiv, most existing reconstructors only recover visible surfaces, leaving large holes and unobserved geometry unresolved. This new framework aims to turn photo captures into usable full assets by filling those gaps.
+
+00:04:53.825 --> 00:05:16.475
+The method builds on TRELLIS.2 and combines partial-point conditioning with metric-scale coarse-to-fine generation. Partial-point conditioning integrates global scene tokens with local spatial evidence to anchor the generation to the input. Meanwhile, the coarse-to-fine approach progressively refines scene geometry within fixed-size windows while maintaining global structural consistency. The system is designed to support scenes of varying scales.
+
+00:05:17.175 --> 00:05:38.450
+Experiments on the Replica and SCRREAM datasets show that AnchorComplete consistently outperforms strong baselines in complete-scene reconstruction. The paper notes that this performance advantage is particularly evident under sparse-view settings. By preserving observed geometry while filling in missing areas, the tool offers a step toward more robust 3D asset creation from partial data.
+
+00:05:39.150 --> 00:05:56.650
+The final weights for CCORE GLB-3D-Coder 4B are now available. According to its GitHub page, the model is a full fine-tune of Qwen3.5-4B designed to generate reusable 3D assets. It functions by taking a text description and writing a complete Three.js HTML scene.
+
+00:05:56.650 --> 00:06:11.550
+This scene includes an Export GLB button, allowing users to open the file in a browser, inspect the result, and export it into Godot, Blender, Unity, or other tools that support GLB. The release includes full Safetensors weights, making it small enough to run locally.
+
+00:06:12.250 --> 00:06:33.425
+The developer notes that the model produces detailed character designs and provides side-by-side comparisons with DeepSeek V4.1 Flash. Users on Reddit report that the model is surprisingly capable for its 4B parameter size. Some commenters suggest it may run on mobile devices, though they note the speed would be slow. Others argue that this technology will significantly lower the cost of game development.
+
+00:06:33.425 --> 00:06:41.125
+However, a limitation noted by users is that the model is currently best suited for static assets, as it does not yet support rigs for movement.
+
+00:06:41.825 --> 00:06:58.425
+That's the Daily Tech Brief. This bulletin is made for personal use and generated with AI from public sources: the script is written by a language model and read by a synthetic voice. It can contain mistakes, so check the links in the episode notes. If you find it useful, you're welcome to listen and subscribe.
+

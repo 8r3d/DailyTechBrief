@@ -1,0 +1,77 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.550
+This is the Daily Tech Brief for Friday, 27 November.
+
+00:00:04.250 --> 00:00:16.600
+UnrealizeX releases a Blender add-on for one-image 3D reconstruction. MEMO extracts a mesh at every frame of a dynamic scene. And llama.cpp grows an AMD-specific fork with an official benchmark dashboard.
+
+00:00:17.300 --> 00:00:22.200
+Later, a closer look at MEMO, UnrealizeX, and the llama.cpp AMD fork.
+
+00:00:22.900 --> 00:00:41.425
+UnrealizeX's one-image 3D reconstruction tool now ships as a Blender add-on. According to BlenderNation, the team's tool rebuilds 3D models from as little as one image without using generative AI. The new add-on puts that non-generative route directly into a DCC pipeline, demonstrated by a one-command batch of 40 models.
+
+00:00:42.125 --> 00:01:01.025
+A paper posted to HF Daily Papers introduces MEMO, which extracts a mesh at every frame of a dynamic scene. MEMO reconstructs the geometry of complete dynamic scenes captured by multiple synchronized cameras. This provides a route to per-frame geometry straight out of multi-cam dynamic captures, instead of a single static reconstruction.
+
+00:01:01.725 --> 00:01:18.625
+HézFX brings Ziva-style muscle simulation to 3ds Max, Maya, Blender and Houdini. According to 80 Level, the tool solves muscle, fascia, fat and skin in one coupled simulation. This gives character pipelines the secondary motion that usually means hand-keyed work or a VFX vendor.
+
+00:01:19.325 --> 00:01:37.450
+A Houdini build fakes a handmade rally diorama, down to cotton dust and wire trees. According to 80 Level, Will Hoskin's procedural Houdini setup recreates the look of a physical scale model. It includes cotton dust, wire trees, and plastic figures, offering a concrete recipe for selling miniature art direction in a fully digital pipeline.
+
+00:01:38.150 --> 00:01:56.300
+llama.cpp grows an AMD-specific fork, with an official benchmark dashboard to match. According to Hacker News, the AMD-specific fork is drawing real attention. The official ggml-org blog now publishes a benchmark dashboard for Ryzen and Radeon, covering the practical side of running local models on AMD hardware.
+
+00:01:57.000 --> 00:02:10.600
+InclusionAI releases Ming-Image-0.2-Design, a text-to-image model aimed at graphic design. Unlike NVIDIA's general-purpose image model trending the same day, this one is tuned for design work and text rendering, with a custom diffusers pipeline.
+
+00:02:11.300 --> 00:02:27.100
+The team behind THE IRONY breaks down its Unity dismemberment and gore system. According to 80 Level, the Dead Space-inspired sci-fi horror game blends gritty 3D with pixel-style art. The developers detail how they tackled the challenges of building realistic gore on top of that hybrid look.
+
+00:02:27.800 --> 00:02:50.350
+In brief. NVIDIA Nemotron Labs Image 30B-A3B continues to climb on Hugging Face, up from 190 stars on 26 November. Blender Studio opens up the Godot codebase behind DOGWALK for visionOS, making the Apple Vision Pro build free to download. And the local quant ecosystem for Inkling-2-Mini keeps growing, with one new quant and one fine-tune derivative appearing since it was last shown.
+
+00:02:51.050 --> 00:02:53.500
+Now, a closer look at today's top stories.
+
+00:02:54.200 --> 00:03:16.625
+MEMO is a new method that reconstructs the geometry of complete dynamic scenes and extracts a mesh at every frame. According to the paper posted to arXiv, this approach offers a direct route to per-frame geometry from multi-camera dynamic captures, moving beyond single static reconstructions. Existing dynamic Gaussian splatting methods typically model appearance alone or target isolated objects using foreground masks.
+
+00:03:16.625 --> 00:03:21.550
+They also rely on fixed grids for mesh recovery, which limits the detail they can capture.
+
+00:03:22.250 --> 00:03:43.500
+The core of MEMO is a per-Gaussian motion model inspired by Gaussian processes. This model represents each Gaussian's position and rotation over time as a combination of temporal Gaussian kernels. It keeps every Gaussian a valid surface element throughout the sequence, carrying an implicit representation of the dynamic geometry. This allows a mesh to be derived at any time from a field defined by the Gaussians.
+
+00:03:43.500 --> 00:03:52.425
+To handle large and fast motion, the authors designed a track-based initialization scheme that fits each Gaussian's initial trajectory to point tracks in closed form.
+
+00:03:53.125 --> 00:04:14.600
+The method is evaluated on Blender-Moments, a new benchmark of nine animated scenes with ground-truth meshes at every frame, as well as on two real-world datasets. According to the paper, MEMO reconstructs the most accurate geometry among state-of-the-art methods. It also remains competitive in novel-view synthesis and training time. The project page is available for those interested in further details.
+
+00:04:15.300 --> 00:04:37.425
+UnrealizeX has released a Blender add-on for its one-image 3D reconstruction tool. According to the project’s page, the system rebuilds 3D models from as little as one image without using generative AI, unless generative AI images are fed into the process. This update integrates the non-generative route directly into a DCC pipeline. The add-on requires Blender 4.2 or newer to function.
+
+00:04:38.125 --> 00:05:00.825
+A new video tutorial demonstrates how to run the add-on on a whole set of images at once. In the demonstration, Oscar Baechler downloaded a batch of CC0 images from Wikimedia Commons and loaded them into Blender’s image editor. A script then ran UnrealizeX on every image, producing 40 models with one command. The process takes about a minute per model. Users can access 20 free credits a month, which is enough for 20 one-shot models.
+
+00:05:01.525 --> 00:05:21.050
+Paid options are also available for higher volume. The Pro plan costs $19.99 a month for 200 credits. The Studio plan costs $49.99 a month for 800 credits. This tiered structure allows users to choose between limited free usage or larger monthly allocations depending on their workflow needs.
+
+00:05:21.750 --> 00:05:42.500
+A new AMD-specific fork of llama.cpp, called llama-cpp-rdna-boosts, is gaining attention for its targeted performance improvements. According to a blog post on the HuggingFace platform, the project consists of a minimal set of patches applied to a pinned commit of the base software. This approach keeps the codebase lean while allowing developers to track newer versions of llama.cpp.
+
+00:05:42.500 --> 00:05:53.425
+The author notes that this method aligns with the stable development practices of the original project, offering a clear alternative to other bespoke inference engines that often modify model behavior to increase speed.
+
+00:05:54.125 --> 00:06:13.600
+The fork is designed for users with AMD graphics cards who want to run local models. It requires ROCm libraries and can be deployed using pre-built images via podman. The author reports that on a system with an AMD R9700 connected via an eGPU interface, the fork significantly boosted performance when running a specific Qwen model.
+
+00:06:13.600 --> 00:06:32.150
+Token generation increased from 35 to 55 tokens per second, while prefill speed rose from 700 to 1300 tokens per second. The post suggests that while other forks chase high speeds by altering how models process data, this project focuses on hardware-specific optimizations without changing the model's core logic.
+
+00:06:32.850 --> 00:06:49.450
+That's the Daily Tech Brief. This bulletin is made for personal use and generated with AI from public sources: the script is written by a language model and read by a synthetic voice. It can contain mistakes, so check the links in the episode notes. If you find it useful, you're welcome to listen and subscribe.
+

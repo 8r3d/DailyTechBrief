@@ -1,0 +1,74 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.600
+This is the Daily Tech Brief for Thursday, 26 November.
+
+00:00:04.300 --> 00:00:16.500
+Unreal Engine 6 is dropping Blueprints and the Actor Gameplay Framework. NVIDIA opens Nemotron Labs image model, 30B MoE with 3B active. MAGI-2 preview ships open weights for audio-capable video.
+
+00:00:17.200 --> 00:00:27.150
+Later, a closer look at NVIDIA opens Nemotron Labs image model, 30B MoE with 3B active, and Outfit Refit 2.0 and DrapeFix fit and drape clothing on any avatar.
+
+00:00:27.850 --> 00:00:43.475
+Unreal Engine 6 is dropping Blueprints and the Actor Gameplay Framework. According to GamesIndustry.biz, with both gone, Verse becomes the only scripting path and Epic's new Scene Graph replaces the actor system. This represents a hard migration for any team that has built on the AFG.
+
+00:00:44.175 --> 00:01:03.300
+NVIDIA opens Nemotron Labs image model, 30B MoE with 3B active. According to HF Trending, the Nemotron Labs text-to-image model arrives as a 30B-parameter mixture of experts with 3B active parameters and open safetensors weights. It is a heavier local image-generation option than the quantized models in this section.
+
+00:01:04.000 --> 00:01:20.275
+MAGI-2 preview ships open weights for audio-capable video. According to HF Trending, Sand AI's preview releases safetensors for text-to-video and image-to-video with audio generation. This makes it the second audio-capable video model here and a direct rival to pi-H3 further down.
+
+00:01:20.975 --> 00:01:40.150
+MEMO reconstructs full dynamic scenes from synchronized cameras. According to a paper posted to arXiv, where the image-to-3D items below work from a single still, MEMO rebuilds the geometry of complete dynamic scenes from multiple synchronized cameras. It is the 4D-capture route for characters and environments rather than single-asset generation.
+
+00:01:40.850 --> 00:01:58.275
+Outfit Refit 2.0 and DrapeFix fit and drape clothing on any avatar. According to BlenderNation, Meshwright's pair of Blender add-ons settles a fitted outfit with Blender's own cloth solver, DrapeFix, and refits an outfit made for one avatar base onto another, Outfit Refit 2.0. It is a concrete workflow for character clothing.
+
+00:01:58.975 --> 00:02:16.250
+Blender 5.3's new Light Accumulation node, shown in a cel shader. According to 80 Level, the cel shader is really a demo of the new Light Accumulation node, which is the actual pipeline change. It changes how you build toon and cel shading in Blender 5.3 rather than being just another shader recipe.
+
+00:02:16.950 --> 00:02:37.650
+ReMeDi recovers PBR materials from a single image. According to a paper posted to arXiv, it reparameterizes the estimate between metal and dielectric hypotheses before solving. This is what makes the recovered albedo and roughness usable for relighting and material editing instead of just a plausible-looking guess, a real shortcut for anyone who can't afford a full capture rig.
+
+00:02:38.350 --> 00:02:55.225
+SprintGS speeds up 3D Gaussian Splatting training. According to a paper posted to arXiv, it attacks the per-scene optimization, the part that has kept 3DGS from being a drop-in for real-time capture. Faster training is what makes splats practical for on-set and asset workflows rather than a batch job.
+
+00:02:55.925 --> 00:03:20.025
+In brief. DreamTour steers video diffusion camera paths without training, according to a paper posted to arXiv. It is a training-free layout steering method that makes video diffusion and world models respect the requested camera direction and travel distance. ArtMesh rebuilds articulated objects as connected triangle meshes, according to a paper posted to arXiv. It reconstructs articulated objects explicitly as connected triangle meshes with per-part rigid motion.
+
+00:03:20.025 --> 00:03:38.250
+Multi-GPU PyTorch backend scales large Gaussian splatting, according to a paper posted to arXiv. It adds a multi-GPU PyTorch backend so large-scale Gaussian splatting reconstructions that no longer fit on one card can still run. How Become sells a microscopic world with SSS and vertex shaders, according to 80 Level.
+
+00:03:38.250 --> 00:03:48.625
+The postmortem is worth reading for the specific tricks, extreme subsurface scattering, vertex-shader animation, and Niagara particles used to sell a living, organic look at microscopic scale.
+
+00:03:49.325 --> 00:03:51.775
+Now, a closer look at today's top stories.
+
+00:03:52.475 --> 00:04:14.425
+NVIDIA has released Nemotron-Labs-VisualCreation, an agentic framework designed for creating expressive raster images and editable visual artifacts. According to the project documentation, the system uses a Pixel as Code interface to connect learned visual tokens with explicit programs. This allows the model to generate items such as webpages, presentations, documents, charts, and scientific figures.
+
+00:04:14.425 --> 00:04:27.775
+The framework combines a Nemotron-native harness with specialized components for visual tokenization, autoregressive image generation, and structured visual coding. The initial release includes the image generator and its bundled visual tokenizer.
+
+00:04:28.475 --> 00:04:52.325
+The core raster image-generation component is Nemotron-Labs-Image-30B-A3B. It is an autoregressive generator initialized from Nemotron 3 Nano, featuring 30B total parameters and 3B active parameters. It works alongside a tokenizer with a 642M-parameter encoder and decoder. The tokenizer uses 16×16 patches and a fixed codebook of 196,560 Leech-lattice vectors.
+
+00:04:52.325 --> 00:05:14.750
+The system also includes Nemotron-Labs-VisionCode models, which are trained for structured-code interfaces. These include 30B-A3B and 120B-A12B variants. The framework routes requests to specific generation paths, using visual selection and renderer checks to diagnose issues and assign targeted repairs. This process allows for bounded repair cycles to retain the strongest eligible artifact.
+
+00:05:15.450 --> 00:05:36.425
+Meshwright has released two new Blender add-ons for VRChat avatar creators: DrapeFix and Outfit Refit 2.0. These tools address a common workflow issue where moving an outfit from one avatar base to another requires both fitting the clothing to the new body and fixing how it hangs. According to the project description, Outfit Refit 2.0 fits an outfit made for one base body onto other avatars in one click.
+
+00:05:36.425 --> 00:05:50.550
+The user selects the source body, target avatars, and the outfit, then presses Fit. Each avatar receives its own fitted, weighted copy with clipping at rest removed and shape keys preserved. The Pro edition allows this process without the original avatar file.
+
+00:05:51.250 --> 00:06:09.600
+DrapeFix serves as the next step, settling the fitted outfit using Blender’s own cloth solver. The add-on targets the problem of fitted skirts appearing stiff, as if cut for a different body. It settles the cloth on the body and makes the resulting shape the new Basis. All shape keys move with the cloth, while weights, UVs, and vertex groups remain unchanged.
+
+00:06:09.600 --> 00:06:33.575
+On a VRoid sample avatar, the demo skirt dropped 32.5 mm at the hem, with all 3 shape keys kept and no geometry left inside the body. Both add-ons run in Blender 4.2 to 5.2 with English and Japanese interfaces. DrapeFix costs 19 USD. Outfit Refit 2.0 Standard costs 19 USD, while Pro costs 29 USD. Existing owners receive Standard 2.0 as a free update, with Pro available as a 10 USD upgrade.
+
+00:06:34.275 --> 00:06:50.875
+That's the Daily Tech Brief. This bulletin is made for personal use and generated with AI from public sources: the script is written by a language model and read by a synthetic voice. It can contain mistakes, so check the links in the episode notes. If you find it useful, you're welcome to listen and subscribe.
+

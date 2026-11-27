@@ -1,0 +1,83 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.600
+This is the Daily Tech Brief for Monday, 23 November.
+
+00:00:04.300 --> 00:00:19.300
+The top stories are: pi-H3, an open-weights image-to-video model that also generates audio; PennyGS, which trains full-resolution 3D Gaussian Splatting in minutes on consumer GPUs; and NKZ Retopia, a Blender add-on that automates quad retopology.
+
+00:00:20.000 --> 00:00:24.225
+Later, a closer look at pi-H3, PennyGS, and NKZ Retopia.
+
+00:00:24.925 --> 00:00:43.275
+First, pi-H3, an open-weights image-to-video model, has appeared on the Hugging Face trending list. According to its GitHub page, the model is built on flow-matching distillation and uses safetensors and diffusers weights. It emits audio alongside the video, so one pass produces both outputs. The model plugs directly into ComfyUI.
+
+00:00:43.975 --> 00:01:06.475
+A paper posted to arXiv in the computer graphics category describes PennyGS. The method trains full-resolution 3D Gaussian Splatting in minutes on consumer GPUs. The paper notes that 3DGS is increasingly fed by high-resolution captures from commodity devices, yet training still typically happens at reduced resolution with a rescale. PennyGS addresses this by performing full-resolution training directly.
+
+00:01:07.175 --> 00:01:26.350
+Eduardo Bartali has released NKZ Retopia, a retopology add-on for Blender. According to a report on BlenderNation, the tool allows users to sketch the flow on a sculpt. Retopia then builds ordered, evenly spaced quads that land on the surface. This automates the quad retopology pass, which is usually the slowest step in a sculpt-to-game-asset pipeline.
+
+00:01:27.050 --> 00:01:44.450
+Direct3D-V3 generates 3D content directly in the voxel domain, skipping latents. A paper posted to Hugging Face Daily Papers says it drops the latent-space route that recent native 3D generation has been built around. The method sidesteps the VAE bottleneck that has been the main focus of that line of work.
+
+00:01:45.150 --> 00:02:06.950
+A paper posted to arXiv in the computer vision category describes a causal diffusion technique aimed at extreme upscaling factors in games. The write-up notes that existing game super-resolution methods operate at moderate factors and lose fine detail. This technique attacks the extreme end of that range, which is directly relevant to anyone pushing super-resolution beyond its usual comfort zone in a real-time pipeline.
+
+00:02:07.650 --> 00:02:23.950
+splat-repair, a tool for editing Gaussian splats, is available on GitHub. According to its GitHub page, the editor includes a repair brush. Users can paint over areas that should be removed, and the surface is rebuilt. This provides a direct editing pass for splat assets that are usually hard to fix.
+
+00:02:24.650 --> 00:02:42.450
+Swatchworks has released HueAtlas Lite, a free GPL add-on for Blender. According to a report on BlenderNation, the add-on maps an entire low-poly game kit to a single palette atlas. This means the kit ships with one material and one small texture, offering a cheap way to stay inside texture memory budgets on low-poly assets.
+
+00:02:43.150 --> 00:03:01.375
+A community-built VFX system for Godot has been released. According to a report on Real Time VFX, the pipeline was built by a UE5 veteran. The author states that Epic's AI pivot and the Unity mess left open source as the only neutral option. This provides a direct alternative to the closed toolchains used in other engines.
+
+00:03:02.075 --> 00:03:22.525
+In brief. Richard Yot has published a write-up treating every Blender Math node as a familiar image adjustment, according to BlenderNation. A new benchmark called NoPeBench measures object penetration in interactive video world models, according to Hugging Face Daily Papers. CADQuader is now in beta, converting CAD models into polygon meshes, according to 80 Level.
+
+00:03:23.225 --> 00:03:25.675
+Now, a closer look at today's top stories.
+
+00:03:26.375 --> 00:03:46.200
+pi-H3 is an open-weights image-to-video model that also generates audio. According to its project page, it is built by Hansheng Chen, Shengqu Cai, Jiaming Song, Gordon Wetzstein, Xinchen Yan, and Leonidas Guibas at Stanford University. The system combines pi-Flow v2 few-step distillation with a technique called DWD, which stands for Decoding Without a Decoder.
+
+00:03:46.200 --> 00:04:08.950
+This method predicts video frames directly at the final step, allowing the process to skip the VAE decoder entirely. The result is a fast generation pipeline that produces synchronized audio alongside the video in a single pass. The model offers two-step and four-step adapters for MiniMax H3. The source recommends the DWD adapters for best performance. Users can condition the output using text, a first frame, or a last frame.
+
+00:04:08.950 --> 00:04:25.150
+The model integrates directly into ComfyUI and supports Diffusers. For ComfyUI users, specific INT8 ConvRot versions are available. The adapters are distributed under the MiniMax H3 Community License Agreement. The project provides code, a blog, and a demo for public use.
+
+00:04:25.850 --> 00:04:48.050
+A paper posted to arXiv introduces PennyGS, a method designed to train full-resolution 3D Gaussian Splatting on consumer graphics hardware. The authors note that while 3DGS is increasingly fed by high-resolution captures from commodity devices, training typically occurs at reduced resolution using research-grade GPUs. PennyGS addresses this by improving the efficiency of every stage of a training step.
+
+00:04:48.050 --> 00:05:08.025
+This includes a leaner splat with flat RGB color and directional cone opacity, along with fused projection and key emission. The method also utilizes forward rasterization optimizations with strided pixel sampling, an approximate tile SSIM loss, and a warp-per-splat backward rasterization. Additionally, it features a fused backward projection and sparse Adam step.
+
+00:05:08.725 --> 00:05:32.575
+According to the paper, at the standard 30k-step budget, PennyGS is the fastest of 10 methods on Mip-NeRF 360 and Tanks&Temples 4K across four GPUs. It achieves this at competitive quality, running at least 3.9x faster than the quickest of the other methods while peaking below 2 GB of GPU memory. On an RTX 3060, a full-resolution Mip-NeRF 360 scene trains in 6m 25s.
+
+00:05:32.575 --> 00:05:45.975
+The authors state this is faster than any other method trains it on an RTX 4090. This approach allows users to process 4K captures without requiring specialized high-end equipment, relying instead on standard consumer GPUs.
+
+00:05:46.675 --> 00:06:10.175
+Eduardo Bartali has released NKZ Retopia, a retopology add-on for Blender designed to automate the quad retopology pass. According to the project description, the tool allows users to sketch the flow on a sculpt, after which it builds ordered, evenly spaced quads that land directly on the surface. This addresses the slowest step in the sculpt-to-game-asset pipeline by handling the repetitive parts of the process while leaving every loop decision to the user.
+
+00:06:10.175 --> 00:06:19.800
+The author, a freelance character and technical artist from Florence, Italy, notes that the result is a regular Blender mesh that remains fully editable with any standard tool.
+
+00:06:20.500 --> 00:06:43.400
+The add-on offers 15 tools in total, accessible through a pie menu. These include features like Draw, which fills sketched regions with an ordered quad grid, and Precise Draw, which extrudes quads from edges or corners. Other functions such as Spine create rings along a limb based on the real cross-section, while Smart Symmetry finds the true centre of a sculpt even when it is uneven. A live quality map displays face status, and a polygon budget tracks progress.
+
+00:06:43.400 --> 00:06:53.400
+Subdivision Preview shows how the retopo will look once subdivided without applying changes. Fill Patterns allow users to switch between Grid, 3 Poles, 5 Poles, and Fan options.
+
+00:06:54.100 --> 00:07:12.825
+NKZ Retopia works in Blender 4.5 to 5.2 and runs fully offline with no account or extra libraries required. It is licensed under GPL, and updates are free. The add-on is currently at version 1.3, with new tools continuing to be added based on user feedback. Sessions can be closed and resumed exactly where they were left off.
+
+00:07:12.825 --> 00:07:21.275
+The tool is available on Superhive and Gumroad, providing a streamlined workflow for artists working on characters for games, VR, and real-time projects.
+
+00:07:21.975 --> 00:07:38.575
+That's the Daily Tech Brief. This bulletin is made for personal use and generated with AI from public sources: the script is written by a language model and read by a synthetic voice. It can contain mistakes, so check the links in the episode notes. If you find it useful, you're welcome to listen and subscribe.
+
